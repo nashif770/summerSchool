@@ -4,7 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
 
   const [matchPass, setMatchPass] = useState(true);
 
@@ -20,7 +20,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -32,7 +32,16 @@ const Register = () => {
     createUser(data.email, data.password)
     .then(result =>{
       const loggedUser = result.user;
-      console.log(loggedUser)
+      console.log(loggedUser);
+
+      updateUser(data.name)
+      .then(()=>{
+        console.log("User Profile Updated")
+        reset();
+      })
+      .catch(error=>{
+        console.log(error)
+      })
     })
   };
 
