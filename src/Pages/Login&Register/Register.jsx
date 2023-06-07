@@ -34,7 +34,7 @@ const Register = () => {
       const loggedUser = result.user;
       console.log(loggedUser);
 
-      updateUser(data.name)
+      updateUser(data.name, data.photoURL)
       .then(()=>{
         console.log("User Profile Updated")
         reset();
@@ -60,6 +60,21 @@ const Register = () => {
                 name="name"
                 type="text"
                 placeholder="name"
+                className="input input-bordered"
+              />
+              {errors.name && (
+                <span className="text-red-600">This field is required</span>
+              )}
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                {...register("photoURL", { required: true })}
+                name="photoURL"
+                type="text"
+                placeholder="Photo URL"
                 className="input input-bordered"
               />
               {errors.name && (

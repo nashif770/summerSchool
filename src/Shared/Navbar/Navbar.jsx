@@ -5,35 +5,32 @@ import { AuthContext } from "../../Providers/AuthProvider";
 const navlist = (
   <>
     <li>
-      <Link to={'/'}>Home</Link>
+      <Link to={"/"}>Home</Link>
     </li>
     <li>
-      <Link to={'/instructors'}>Instructors</Link>
+      <Link to={"/instructors"}>Instructors</Link>
     </li>
     <li>
-      <Link to={'/classes'}>Classes</Link>
+      <Link to={"/classes"}>Classes</Link>
     </li>
     <li>
-      <Link to={'/dashboard'}>Dashboard</Link>
+      <Link to={"/dashboard"}>Dashboard</Link>
     </li>
   </>
 );
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
 
-  const {user, signOutUser} = useContext(AuthContext)
+  console.log(user);
 
-  console.log(user)
-
-
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     signOutUser()
-    .then(()=>{})
-    .catch(error=>{
-      console.log(error)
-    })
-  }
-
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="navbar bg-base-100">
@@ -68,16 +65,30 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navlist}</ul>
       </div>
       <div className="navbar-end">
-        {user? 
-        <>
-        <Link to={'/userprofile'} className="btn mx-6">{user?.displayName}</Link>
-        <Link onClick={handleLogOut} className="btn">Logout</Link>
-        </>
-        :
-        <>
-        <Link to={'/login'} className="btn mx-6">Login</Link>
-        <Link to={'/register'} className="btn">Register</Link>
-        </>}
+        {user ? (
+          <>
+            <img
+              src={user.photoURL}
+              alt=""
+              className="w-10 mx-6 rounded-full"
+            />
+            <Link to={"/userprofile"} className="btn mx-6">
+              {user?.displayName}
+            </Link>
+            <Link onClick={handleLogOut} className="btn">
+              Logout
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to={"/login"} className="btn mx-6">
+              Login
+            </Link>
+            <Link to={"/register"} className="btn">
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
