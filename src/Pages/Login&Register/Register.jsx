@@ -1,10 +1,21 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, matchPath } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+
+  const [matchPass, setMatchPass] = useState(true);
+
+  const handlePasswordChange = (event) => {
+    const form = event.target
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+    setMatchPass(confirmPassword === password);
+  };
+
+  // console.log(matchPass)
 
   const {
     register,
@@ -14,25 +25,16 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    if(!matchPass){
+      console.log("Hello")
+      return
+    }
+    createUser(data.email, data.password)
+    .then(result =>{
+      const loggedUser = result.user;
+      console.log(loggedUser)
+    })
   };
-
-  // const handleRegister = (event) => {
-  //   event.preventDefault();
-
-  //   const form = event.target;
-  //   const name = form.name.value;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-  //   const confirmPassword = form.confirmPassword.value;
-
-  //   if (password !== confirmPassword) {
-  //     console.log("passwords don't match");
-  //     return;
-  //   }
-
-  //   console.log(name, email, password, confirmPassword);
-  // };
 
   return (
     <div className="hero min-h-screen w-full bg-base-200">

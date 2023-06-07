@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const navlist = (
   <>
@@ -7,18 +8,31 @@ const navlist = (
       <Link to={'/'}>Home</Link>
     </li>
     <li>
-      <Link>Instructors</Link>
+      <Link to={'/instructors'}>Instructors</Link>
     </li>
     <li>
-      <Link>Classes</Link>
+      <Link to={'/classes'}>Classes</Link>
     </li>
     <li>
-      <Link>Dashboard</Link>
+      <Link to={'/dashboard'}>Dashboard</Link>
     </li>
   </>
 );
 
 const Navbar = () => {
+
+  const {user, signOutUser} = useContext(AuthContext)
+
+
+  const handleLogOut =()=>{
+    signOutUser()
+    .then(()=>{})
+    .catch(error=>{
+      console.log(error)
+    })
+  }
+
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -52,9 +66,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navlist}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/userprofile'} className="btn mx-6">User Name</Link>
-        <Link to={'/login'} className="btn">Login</Link>
+        {user? 
+        <>
+        <Link to={'/userprofile'} className="btn mx-6">{user.email}</Link>
+        <Link onClick={handleLogOut} className="btn">Logout</Link>
+        </>
+        :
+        <>
+        <Link to={'/login'} className="btn mx-6">Login</Link>
         <Link to={'/register'} className="btn">Register</Link>
+        </>}
       </div>
     </div>
   );
