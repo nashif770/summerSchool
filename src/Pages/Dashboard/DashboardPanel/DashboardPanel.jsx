@@ -18,7 +18,7 @@ const DashboardPanel = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content mt-3">
+        <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
           {/* Student Section*/}
           <h1 className="text-center text-3xl">Student Panel</h1>
           <div className="divider"></div>

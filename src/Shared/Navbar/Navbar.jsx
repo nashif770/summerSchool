@@ -22,8 +22,6 @@ const navlist = (
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
-  console.log(user);
-
   const handleLogOut = () => {
     signOutUser()
       .then(() => {})
@@ -67,14 +65,14 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
+            <Link to={"/dashboard/selectedclass"} className="btn mx-6">
+              Carts
+            </Link>
             <img
               src={user.photoURL}
               alt=""
               className="w-10 mx-6 rounded-full"
             />
-            <Link to={"/userprofile"} className="btn mx-6">
-              {user?.displayName}
-            </Link>
             <Link onClick={handleLogOut} className="btn">
               Logout
             </Link>
