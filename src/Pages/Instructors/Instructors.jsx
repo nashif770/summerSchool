@@ -4,21 +4,6 @@ import useInstructors from "../../Hooks/useInstructors";
 const Instructors = () => {
   const [instructors] = useInstructors();
 
-  console.log(instructors);
-  //   - Image
-  //   - Name
-  //   - Email
-  //   - (optional) Number of Classes taken by the Instructor.
-  //   - (optional) Name of the Classes taken by the Instructor.
-  //   - (optional) `See Classes` button to show classes by this Instructor. This will take you to a new link
-
-  //   classes: (3)[("Karate", "Kung Fu", "Boxing")];
-  //   classesTaken: 3;
-  //   email: "john.smith@example.com";
-  //   image: "instructor1.jpg";
-  //   name: "John Smith";
-  //   _id: "6480909e6e743aeeec576fb6";
-
   return (
     <div>
       <div className="grid grid-cols-3 gap-1 m-auto p-6">
