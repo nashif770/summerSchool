@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import { useContext } from "react";
 import useClasses from "../../Hooks/useClasses";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
@@ -6,22 +6,21 @@ import axios from "axios";
 const Classes = () => {
   const [aClass] = useClasses();
 
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
- const handleAddClass = (cl) =>{
-  cl.userEmail = user.email
-  if(user){
-    axios.post("http://localhost:5000/myclasses", cl)
-    .then(res =>{
-      console.log(res.data)
-    })
-  }
- }
+  const handleAddClass = (cl) => {
+    cl.email = user.email;
 
+    if (user) {
+      axios.post("http://localhost:5000/myselectedclasses", cl).then((res) => {
+        console.log(res.data);
+      });
+    }
+  };
 
-//  TODO: ----- 
- const checkSeats = () =>{
-  axios
+  //  TODO: -----
+  const checkSeats = () => {
+    axios
       .get("http://localhost:5000/topinstructors")
       .then((res) => {
         console.log(res.data);
@@ -29,7 +28,7 @@ const Classes = () => {
       .catch((err) => {
         console.log(err);
       });
- }
+  };
 
   return (
     <div>
@@ -58,7 +57,7 @@ const Classes = () => {
                 </div>
               </div>
               <button
-              onClick={() => handleAddClass(cl)}
+                onClick={() => handleAddClass(cl)}
                 className="btn btn-primary text-white"
                 disabled={cl.availableSeats == 0 && "disable"}
               >

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useStudentClass from "../../Hooks/useStudentClass";
 
 const navlist = (
   <>
@@ -21,6 +22,8 @@ const navlist = (
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+
+  const [data] = useStudentClass();
 
   const handleLogOut = () => {
     signOutUser()
@@ -66,7 +69,7 @@ const Navbar = () => {
         {user ? (
           <>
             <Link to={"/dashboard/selectedclass"} className="btn mx-6">
-              Carts
+              Carts {data?.length}
             </Link>
             <img
               src={user.photoURL}

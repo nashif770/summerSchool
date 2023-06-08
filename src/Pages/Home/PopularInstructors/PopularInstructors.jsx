@@ -41,7 +41,7 @@ const PopularInstructors = () => {
                 <span className=" font-normal ">
                   0{instructor.classesTaken}
                 </span>
-              </p>
+              </p>  
             </div>
             <button className="btn btn-primary text-white">See Classes</button>
           </div>
