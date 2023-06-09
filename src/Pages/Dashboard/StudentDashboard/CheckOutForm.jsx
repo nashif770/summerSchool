@@ -15,7 +15,6 @@ const CheckOutForm = ({ myClasses, price }) => {
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
 
-  console.log(myClasses)
 
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price }).then((res) => {
@@ -73,8 +72,10 @@ const CheckOutForm = ({ myClasses, price }) => {
         transactionId: paymentIntent.id,
         price,
         quantity: myClasses?.length,
+        classes: myClasses.map(classes => classes.className),
         classId: myClasses.map(Id => Id._id),
-        classes: myClasses.map(classes => classes.name),
+        myClassId: myClasses.map(myId => myId.classId),
+        orderStatus: 'pending'
       }
       axiosSecure.post('payments', payment)
       .then(res =>{
