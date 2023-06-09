@@ -24,7 +24,6 @@ const MySelectedClass = () => {
         console.log(data);
         if(data.deletedCount>0){
           refetch();
-          alert("deletion successful");
         }
       });
   };

@@ -29,6 +29,9 @@ const DashboardPanel = () => {
             <NavLink to={"/dashboard/pay"}>Payment Section</NavLink>
           </li>
           <li>
+            <NavLink to={"/dashboard/paymenthistory"}>Payment History</NavLink>
+          </li>
+          <li>
             <NavLink to={"/dashboard/enroll"}>Enrolled Class</NavLink>
           </li>
           {/* Student Section*/}

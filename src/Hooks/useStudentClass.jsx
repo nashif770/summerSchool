@@ -13,7 +13,7 @@ import { useQuery } from "@tanstack/react-query";
         return response.json();
         },
     });
-    // console.log("here's da data",data)
+    // console.log("here's da data", myClasses.length)
     return [myClasses, refetch]
     };
 
