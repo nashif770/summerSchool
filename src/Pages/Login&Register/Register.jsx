@@ -26,7 +26,7 @@ const Register = () => {
 
   const onSubmit = (data) => {
     if(!matchPass){
-      console.log("Hello")
+      console.log("Password Don't Match")
       return
     }
     createUser(data.email, data.password)
@@ -77,7 +77,7 @@ const Register = () => {
                 placeholder="Photo URL"
                 className="input input-bordered"
               />
-              {errors.name && (
+              {errors.photoURL && (
                 <span className="text-red-600">This field is required</span>
               )}
             </div>

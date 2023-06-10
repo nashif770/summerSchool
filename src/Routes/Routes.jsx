@@ -12,6 +12,9 @@ import MySelectedClass from "../Pages/Dashboard/StudentDashboard/MySelectedClass
 import MyEnrolledClass from "../Pages/Dashboard/StudentDashboard/MyEnrolledClass";
 import Payment from "../Pages/Dashboard/StudentDashboard/Payment";
 import PaymentHistory from "../Pages/Dashboard/StudentDashboard/PaymentHistory";
+import AddAClass from "../Pages/Dashboard/InstructorsDashboard/AddAClass";
+import FeedBack from "../Pages/Dashboard/InstructorsDashboard/FeedBack";
+import TopEnrolledClasses from "../Pages/Dashboard/InstructorsDashboard/TopEnrolledClasses";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +46,7 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      // student section 
       {
         path: "selectedclass",
         element: <MySelectedClass></MySelectedClass>
@@ -58,6 +62,19 @@ export const router = createBrowserRouter([
       {
         path: "paymenthistory",
         element: <PaymentHistory></PaymentHistory>
+      },
+      // instuctor section 
+      {
+        path: "addclass",
+        element: <AddAClass></AddAClass>,
+      },
+      {
+        path: "topenrolled",
+        element: <TopEnrolledClasses></TopEnrolledClasses>
+      },
+      {
+        path: "feedback",
+        element: <FeedBack></FeedBack>
       },
     ],
   },

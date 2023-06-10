@@ -8,13 +8,12 @@ const CheckOutForm = ({ myClasses, price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth(AuthContext);
-
   const [axiosSecure] = useAxiosSecure();
+  
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
-
 
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price }).then((res) => {
@@ -47,16 +46,16 @@ const CheckOutForm = ({ myClasses, price }) => {
     setProcessing(true);
 
     const { paymentIntent, error: confirmError } =
-    await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: card,
-        billing_details: {
-          name: user?.displayName || "anonymus",
-          email: user?.email || "unknown",
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: user?.displayName || "anonymus",
+            email: user?.email || "unknown",
+          },
         },
-      },
-    });
-    console.log("calling",paymentIntent)
+      });
+    console.log("calling", paymentIntent);
     if (confirmError) {
       console.log(confirmError);
     }
@@ -72,18 +71,29 @@ const CheckOutForm = ({ myClasses, price }) => {
         transactionId: paymentIntent.id,
         price,
         quantity: myClasses?.length,
-        classes: myClasses.map(classes => classes.className),
-        classId: myClasses.map(Id => Id._id),
-        myClassId: myClasses.map(myId => myId.classId),
-        orderStatus: 'pending'
-      }
-      axiosSecure.post('payments', payment)
-      .then(res =>{
+        classes: myClasses.map((classes) => classes.className),
+        classId: myClasses.map((Id) => Id._id),
+        myClassId: myClasses.map((myId) => myId.classId),
+        orderStatus: "pending",
+      };
+
+      console.log(myClasses);
+
+      myClasses.map((group) => {
+        axiosSecure.post("payHistory", group).then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            console.log("data entered");
+          }
+        });
+      });
+
+      axiosSecure.post("payments", payment).then((res) => {
         console.log(res.data);
-        if(res.data.insertedId){
-          console.log("data entered")
+        if (res.data.insertedId) {
+          console.log("data entered");
         }
-      })
+      });
     }
   };
   return (
@@ -115,7 +125,13 @@ const CheckOutForm = ({ myClasses, price }) => {
       </form>
       {cardError && <p className="text-red-600 text-center">{cardError}</p>}
       {transactionId && (
-        <p className="text-black text-center"> Transaction Complete with <span className="text-center font-bold text-green-500">{transactionId}</span></p>
+        <p className="text-black text-center">
+          {" "}
+          Transaction Complete with{" "}
+          <span className="text-center font-bold text-green-500">
+            {transactionId}
+          </span>
+        </p>
       )}
     </>
   );
