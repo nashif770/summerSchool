@@ -43,7 +43,7 @@ const DashboardPanel = () => {
           </li>
         </ul>}
           {/* Student Section*/}
-          {/* Student Section*/}
+          {/* Instructor Section*/}
         {isInstructor && <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
           <h1 className="text-center text-3xl">Instructor Panel</h1>
           <div className="divider"></div>
@@ -57,7 +57,19 @@ const DashboardPanel = () => {
             <NavLink to={"/dashboard/feedback"}>FeedBack</NavLink>
           </li>
         </ul>}
-          {/* Student Section*/}
+          {/* Instructor Section*/}
+          {/* Admin Section*/}
+        {isAdmin && <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+          <h1 className="text-center text-3xl">Admin Panel</h1>
+          <div className="divider"></div>
+          <li>
+            <NavLink to={"/dashboard/manageclass"}>Manage Class</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/dashboard/manageuser"}>Manage Users</NavLink>
+          </li>
+        </ul>}
+          {/* Admin Section*/}
       </div>
     </div>
   );

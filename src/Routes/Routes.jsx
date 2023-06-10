@@ -15,6 +15,8 @@ import PaymentHistory from "../Pages/Dashboard/StudentDashboard/PaymentHistory";
 import AddAClass from "../Pages/Dashboard/InstructorsDashboard/AddAClass";
 import FeedBack from "../Pages/Dashboard/InstructorsDashboard/FeedBack";
 import TopEnrolledClasses from "../Pages/Dashboard/InstructorsDashboard/TopEnrolledClasses";
+import ManageClasses from "../Pages/Dashboard/AdminDashboard/ManageClasses";
+import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +77,15 @@ export const router = createBrowserRouter([
       {
         path: "feedback",
         element: <FeedBack></FeedBack>
+      },
+      // admin section 
+      {
+        path: "manageclass",
+        element: <ManageClasses></ManageClasses>
+      },
+      {
+        path: "manageuser",
+        element: <ManageUsers></ManageUsers>
       },
     ],
   },
