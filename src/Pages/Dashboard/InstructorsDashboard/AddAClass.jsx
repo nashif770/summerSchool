@@ -20,7 +20,7 @@ const AddAClass = () => {
       ...data,
       InstructorEmail: user.email,
       instructorName: user.displayName,
-      status: "pending",
+      status: "Pending",
     };
 
     console.log(addedClass);

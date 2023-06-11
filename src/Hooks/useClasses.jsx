@@ -10,7 +10,7 @@ const useClasses = () =>{
             setAllClass(data)
             setLoading(false)
         })
-    }, [])
+    }, [allClass.status])
 
     return [allClass, loading];
 

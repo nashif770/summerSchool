@@ -8,10 +8,14 @@ const ClassesCard = ({ allClass }) => {
   const { user } = useContext(AuthContext);
   const [myClasses] = useStudentClass();
 
+  // console.log(allClass);
+
   const { status } = allClass;
 
+  console.log(status)
+
   useEffect(() => {
-    if (status === "approved") {
+    if (status === "Approved") {
       setApprovedClass(true);
     }
   }, [status]);
@@ -56,46 +60,44 @@ const ClassesCard = ({ allClass }) => {
 
   return (
     <>
-      <div className="hero w-11/12 bg-base-200 m-3 rounded-lg">
-        <div className="hero-content flex-col ">
-          <img
-            src="https://i.ibb.co/CJ2vs6L/40-K-20180520124148.jpg"
-            className="max-w-sm rounded-lg shadow-2xl w-1/2"
-          />
-          <div className="w-full">
-            <h1 className="text-3xl font-bold">{allClass.className}</h1>
-            <p className="py-6 font-bold">
-              Instructor:{" "}
-              <span className=" font-normal ">{allClass.instructorName}</span>
-            </p>
-            <div className="flex justify-between">
-              <p className="font-bold">
-                Available Seats:
-                <span className=" font-normal ">{allClass.availableSeats}</span>
+      {/* {approvedClass && ( */}
+        <div className="hero w-11/12 bg-base-200 m-3 rounded-lg">
+          <div className="hero-content flex-col ">
+            <img
+              src="https://i.ibb.co/CJ2vs6L/40-K-20180520124148.jpg"
+              className="max-w-sm rounded-lg shadow-2xl w-1/2"
+            />
+            <div className="w-full">
+              <h1 className="text-3xl font-bold">{allClass.className}</h1>
+              <p className="py-6 font-bold">
+                Instructor:{" "}
+                <span className=" font-normal ">{allClass.instructorName}</span>
               </p>
-              <p className="font-bold">
-                Price: <span className="font-normal"> ${allClass.price}</span>
-              </p>
+              <div className="flex justify-between">
+                <p className="font-bold">
+                  Available Seats:
+                  <span className=" font-normal ">
+                    {allClass.availableSeats}
+                  </span>
+                </p>
+                <p className="font-bold">
+                  Price: <span className="font-normal"> ${allClass.price}</span>
+                </p>
+              </div>
             </div>
-          </div>
-          {approvedClass ?
-            (<button
+           { approvedClass && <button
               onClick={() => handleAddClass(allClass)}
               className="btn btn-primary text-white"
               disabled={
-                allClass?.availableSeats == 0 ||
+                allClass?.availableSeats == '0' ||
                 (!allClass?.availableSeats && "disable")
               }
             >
               Add to My Class
-            </button>)
-            :
-            <p className="text-red-600">
-              Waiting for Approval
-            </p>
-          }
+            </button>}
+          </div>
         </div>
-      </div>
+      {/* )} */}
     </>
   );
 };

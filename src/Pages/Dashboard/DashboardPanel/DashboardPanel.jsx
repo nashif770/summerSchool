@@ -1,5 +1,4 @@
 import React from "react";
-import AddClass from "../AddClass";
 import { NavLink, Outlet } from "react-router-dom";
 
 const DashboardPanel = () => {
