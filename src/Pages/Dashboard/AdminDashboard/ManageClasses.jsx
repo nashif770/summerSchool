@@ -2,12 +2,20 @@ import useClasses from "../../../Hooks/useClasses";
 import Headings from "../../../Componants/Headings";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const [allClass] = useClasses();
   const [btnDisable, setBtnDisable] = useState([]);
   let index = 1;
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   //   console.log(allClass);
 
@@ -40,16 +48,15 @@ const ManageClasses = () => {
       });
     setBtnDisable((prevState) => [...prevState, id]);
   };
-  console.log(btnDisable);
 
   //   Class Image, Class name, Instructor name, Instructor email, Available seats, Price, Status(pending/approved/denied) 3 buttons( Approve, Deny and send feedback)**.
 
-  const handleFeedback = (id) => {
-    console.log(id);
-    const data = {
-      FeedBack: "Approved",
+  const onSubmitFeedback = (data, id) => {
+    console.log(id)
+    const feedback = {
+      feedBack: data.adminfeedback,
     };
-    console.log(data);
+    console.log(feedback);
     axiosSecure
       .patch(`/classes/${id}`, data)
       .then((res) => console.log(res))
@@ -63,7 +70,7 @@ const ManageClasses = () => {
     <>
       <Headings heading={"My Classes"} subHeading={""}></Headings>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table p-12">
           {/* head */}
           <thead>
             <tr>
@@ -113,7 +120,7 @@ const ManageClasses = () => {
                         className="btn btn-primary m-auto mx-3 btn-sm"
                         disabled={true}
                       >
-                        Class Approved
+                        Approved
                       </button>
                       <button
                         onClick={() => handleDeny(group._id)}
@@ -125,6 +132,7 @@ const ManageClasses = () => {
                       </button>
                     </>
                   )}
+
                   {group.status === "Denied" && (
                     <>
                       <button
@@ -140,17 +148,51 @@ const ManageClasses = () => {
                         // disabled={btnDisable.includes(group._id)}
                         disabled={true}
                       >
-                        Class Denied
+                        Denied
                       </button>
+                      <button
+                        className="btn btn-warning m-auto  mx-3 btn-sm"
+                        onClick={() => window[group._id].showModal()}
+                        disabled={group.adminfeedback && true}
+                      >
+                        FeedBack
+                      </button>
+                      <dialog id={group._id} className="modal">
+                        <form
+                          onSubmit={handleSubmit((data)=>onSubmitFeedback(data, group._id))}
+                          method="dialog"
+                          className="modal-box"
+                        >
+                          <p className="text-center">
+                            Press
+                            <span className="text-red-600 font-bold">
+                              ESC
+                            </span>
+                            key to Close the Modal
+                          </p>
+                          <div className="form-control">
+                            <label className="label">
+                              <span className="label-text">Write Feedback</span>
+                            </label>
+                            <textarea
+                              {...register("adminfeedback", { required: true })}
+                              name="adminfeedback"
+                              type="text"
+                              placeholder="Write your feedback here"
+                              className="textarea textarea-bordered"
+                              rows={2}
+                              cols={40}
+                            ></textarea>
+                          </div>
+                          <button className="btn btn-warning btn-sm mt-3" >
+                            Send Feedback
+                          </button>
+                        </form>
+                      </dialog>
+
+                      {/* --------------------- Modal ------------------- */}
                     </>
                   )}
-
-                  <button
-                    className="btn btn-warning m-auto  mx-3 btn-sm"
-                    onClick={() => handleFeedback(group._id)}
-                  >
-                    Send Feedback
-                  </button>
                 </td>
               </tr>
             ))}

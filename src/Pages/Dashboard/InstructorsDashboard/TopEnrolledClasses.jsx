@@ -17,8 +17,20 @@ const TopEnrolledClasses = () => {
     });
   }, [email]);
 
-  const handleDelete = () => {
+  const handleDelete = (group) => {
     console.log("delete");
+
+    axiosSecure
+      .delete(`http://localhost:5000/instructorClasses/${group._id}`)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.deletedCount > 0) {
+          console.log("class deleted")
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   console.log(topEnrolled);
@@ -52,7 +64,9 @@ const TopEnrolledClasses = () => {
               <tr key={group._id}>
                 <th className="text-center">{index++}</th>
                 <td className="text-center">{group.className}</td>
-                <td className="text-center">{group.availableSeats || "0"} seats</td>
+                <td className="text-center">
+                  {group.availableSeats || "0"} seats
+                </td>
                 <td className="text-center">${group.price}</td>
                 <td className="text-center">{group.status}</td>
                 <td className="flex m-auto">
