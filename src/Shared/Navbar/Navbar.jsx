@@ -72,7 +72,7 @@ const Navbar = () => {
               Carts {data?.length}
             </Link>
             <img
-              src={user.photoURL}
+              src={user?.photoURL}
               alt=""
               className="w-10 mx-6 rounded-full"
             />

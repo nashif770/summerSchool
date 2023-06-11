@@ -7,7 +7,7 @@ const MyEnrolledClass = () => {
   const axiosSecure = useAxiosSecure();
   const [enrolledClasses, setEnrolledClasses] = useState([]);
 
-  axios
+  axiosSecure
     .get("http://localhost:5000/payHistory")
     .then((response) => {
       setEnrolledClasses(response.data);
@@ -16,14 +16,13 @@ const MyEnrolledClass = () => {
       console.log(error);
     });
 
-    let index = 1;
+  let index = 1;
 
   return (
     <>
       <Headings heading={"My Classes"} subHeading={""}></Headings>
       <div className="overflow-x-auto">
-        <div className="flex align-middle justify-between m-3 mt-0 px-60 py-3 bg-slate-300">
-        </div>
+        <div className="flex align-middle justify-between m-3 mt-0 px-60 py-3 bg-slate-300"></div>
         <table className="table">
           {/* head */}
           <thead>

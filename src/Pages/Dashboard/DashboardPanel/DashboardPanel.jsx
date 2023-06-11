@@ -1,12 +1,26 @@
-import React from "react";
+import { useContext, useState, useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const DashboardPanel = () => {
+  const { user } = useContext(AuthContext);
+  const [axiosSecure] = useAxiosSecure();
+  const [allUsers, setAllUsers] = useState();
+  const [role, setRole] = useState("");
 
-  const isStudent = true;
-  const isInstructor = true;
-  const isAdmin = true;
+  useEffect(() => {
+    axiosSecure.get("http://localhost:5000/users").then((res) => {
+      setAllUsers(res.data);
+    });
+  }, []);
 
+  useEffect(() => {
+    const filteredUsers = allUsers?.find(
+      (userData) => userData.email === user.email
+    );
+    setRole(filteredUsers?.role);
+  }, [allUsers]);
 
 
   return (
@@ -24,51 +38,63 @@ const DashboardPanel = () => {
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          {/* Student Section*/}
-        {isStudent && <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
-          <h1 className="text-center text-3xl">Student Panel</h1>
-          <div className="divider"></div>
-          <li>
-            <NavLink to={"/dashboard/selectedclass"}>Selected Classes</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/pay"}>Payment Section</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/paymenthistory"}>Payment History</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/enroll"}>Enrolled Class</NavLink>
-          </li>
-        </ul>}
-          {/* Student Section*/}
-          {/* Instructor Section*/}
-        {isInstructor && <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
-          <h1 className="text-center text-3xl">Instructor Panel</h1>
-          <div className="divider"></div>
-          <li>
-            <NavLink to={"/dashboard/addclass"}>Add Class</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/topenrolled"}>Top Enrolled Class</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/feedback"}>FeedBack</NavLink>
-          </li>
-        </ul>}
-          {/* Instructor Section*/}
-          {/* Admin Section*/}
-        {isAdmin && <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
-          <h1 className="text-center text-3xl">Admin Panel</h1>
-          <div className="divider"></div>
-          <li>
-            <NavLink to={"/dashboard/manageclass"}>Manage Class</NavLink>
-          </li>
-          <li>
-            <NavLink to={"/dashboard/manageuser"}>Manage Users</NavLink>
-          </li>
-        </ul>}
-          {/* Admin Section*/}
+        {/* Student Section*/}
+        {role === "student" && (
+          <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+            <h1 className="text-center text-3xl">Student Panel</h1>
+            <div className="divider"></div>
+            <li>
+              <NavLink to={"/dashboard/selectedclass"}>
+                Selected Classes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/pay"}>Payment Section</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/paymenthistory"}>
+                Payment History
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/enroll"}>Enrolled Class</NavLink>
+            </li>
+          </ul>
+        )}
+        {/* Student Section*/}
+        {/* Instructor Section*/}
+        {role === "instructor" && (
+          <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+            <h1 className="text-center text-3xl">Instructor Panel</h1>
+            <div className="divider"></div>
+            <li>
+              <NavLink to={"/dashboard/addclass"}>Add Class</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/topenrolled"}>
+                Top Enrolled Class
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/feedback"}>FeedBack</NavLink>
+            </li>
+          </ul>
+        )}
+        {/* Instructor Section*/}
+        {/* Admin Section*/}
+        {role === "admin"  && (
+          <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+            <h1 className="text-center text-3xl">Admin Panel</h1>
+            <div className="divider"></div>
+            <li>
+              <NavLink to={"/dashboard/manageclass"}>Manage Class</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/dashboard/manageuser"}>Manage Users</NavLink>
+            </li>
+          </ul>
+        )}
+        {/* Admin Section*/}
       </div>
     </div>
   );

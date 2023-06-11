@@ -27,6 +27,7 @@ const ClassesCard = ({ allClass }) => {
       className,
       image,
       instructorName,
+      instructorEmail,
       price,
       sessions,
     } = allClass;
@@ -39,6 +40,7 @@ const ClassesCard = ({ allClass }) => {
       availableSeats,
       className,
       instructorName,
+      instructorEmail,
       price,
       sessions,
     };

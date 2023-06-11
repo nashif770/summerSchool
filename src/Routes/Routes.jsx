@@ -35,56 +35,68 @@ export const router = createBrowserRouter([
       },
       {
         path: "classes",
-        element: <PrivateRoute><Classes></Classes></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Classes></Classes>
+          </PrivateRoute>
+        ),
       },
       {
         path: "instructors",
-        element: <PrivateRoute><Instructors></Instructors></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Instructors></Instructors>
+          </PrivateRoute>
+        ),
       },
     ],
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
-      // student section 
+      // student section
       {
         path: "selectedclass",
-        element: <MySelectedClass></MySelectedClass>
+        element: <MySelectedClass></MySelectedClass>,
       },
       {
         path: "enroll",
-        element: <MyEnrolledClass></MyEnrolledClass>
+        element: <MyEnrolledClass></MyEnrolledClass>,
       },
       {
         path: "pay",
-        element: <Payment></Payment>
+        element: <Payment></Payment>,
       },
       {
         path: "paymenthistory",
-        element: <PaymentHistory></PaymentHistory>
+        element: <PaymentHistory></PaymentHistory>,
       },
-      // instuctor section 
+      // instuctor section
       {
         path: "addclass",
         element: <AddAClass></AddAClass>,
       },
       {
         path: "topenrolled",
-        element: <TopEnrolledClasses></TopEnrolledClasses>
+        element: <TopEnrolledClasses></TopEnrolledClasses>,
       },
       {
         path: "feedback",
-        element: <FeedBack></FeedBack>
+        element: <FeedBack></FeedBack>,
       },
-      // admin section 
+      // admin section
       {
         path: "manageclass",
-        element: <ManageClasses></ManageClasses>
+        element: <ManageClasses></ManageClasses>,
       },
       {
         path: "manageuser",
-        element: <ManageUsers></ManageUsers>
+        element: <ManageUsers></ManageUsers>,
       },
     ],
   },

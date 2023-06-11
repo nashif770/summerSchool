@@ -18,6 +18,8 @@ const AddAClass = () => {
   const onSubmit = (data) => {
     const addedClass = {
       ...data,
+      availableSeats: parseFloat(data.availableSeats),
+      price: parseFloat(data.price),
       InstructorEmail: user.email,
       instructorName: user.displayName,
       status: "Pending",
