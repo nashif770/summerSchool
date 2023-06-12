@@ -70,23 +70,19 @@ const CheckOutForm = ({ myClasses, price }) => {
 
       const payment = {
         email: user?.email,
-        transactionId: paymentIntent.id,
+        transactionId: transactionId,
         price,
-        quantity: myClasses?.length,
-        classes: myClasses.map((classes) => classes.className),
-        classId: myClasses.map((Id) => Id._id),
-        myClassId: myClasses.map((myId) => myId.classId),
+        classes: myClasses.className,
+        classId: myClasses._id,
+        myClassId: myClasses.classId,
         orderStatus: "pending",
       };
 
-
-      myClasses.map((group) => {
-        axiosSecure.post("payHistory", group).then((res) => {
-          console.log(res.data);
-          if (res.data.insertedId) {
-            console.log("data entered");
-          }
-        });
+      axiosSecure.post("payHistory", myClasses).then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          console.log("data entered");
+        }
       });
 
       axiosSecure.post("payments", payment).then((res) => {

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Headings from "../../../Componants/Headings";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const MyEnrolledClass = () => {
   const [axiosSecure] = useAxiosSecure();
   const [enrolledClasses, setEnrolledClasses] = useState([]);
+  const {user} = useContext(AuthContext);
 // TODO: send email to backend 
   useEffect(() => {
     axiosSecure
@@ -17,9 +19,7 @@ const MyEnrolledClass = () => {
       });
   }, [enrolledClasses]);
 
-  console.log(enrolledClasses)
-
-  // enrolledClasses.filter(myclasses => myclasses.email === )
+  const myEnrolledClass = enrolledClasses.filter(enrolled => enrolled.email === user.email)
 
   let index = 1;
 
@@ -41,7 +41,7 @@ const MyEnrolledClass = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {enrolledClasses?.map((enrolled) => (
+            {myEnrolledClass?.map((enrolled) => (
               <tr key={enrolled._id}>
                 <th>{index++}</th>
                 <td>{enrolled.className}</td>

@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
       {
         path: "instructorsDetails/:id",
         element: <InstructorsDetail></InstructorsDetail>,
-        loader: ({params}) =>fetch(`http://localhost:5000/instructors/${params.id}`),
+        loader: ({params}) =>fetch(`https://b7a12-summer-camp-server-side-nashif770-nashif770.vercel.app/instructors/${params.id}`),
       },
     ],
   },
@@ -73,7 +73,7 @@ export const router = createBrowserRouter([
         element: <MyEnrolledClass></MyEnrolledClass>,
       },
       {
-        path: "pay",
+        path: "payment/:id",
         element: <Payment></Payment>,
       },
       {

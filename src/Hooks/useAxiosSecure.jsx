@@ -10,8 +10,9 @@ const useAxiosSecure = () => {
   
   
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000', 
+    baseURL: 'https://b7a12-summer-camp-server-side-nashif770-nashif770.vercel.app/', 
   });
+  
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('access-token');

@@ -3,6 +3,7 @@ import Headings from "../../../Componants/Headings";
 import axios from "axios";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useStudentClass from "../../../Hooks/useStudentClass";
+import { Link } from "react-router-dom";
 
 const MySelectedClass = () => {
   const { user } = useContext(AuthContext);
@@ -15,13 +16,16 @@ const MySelectedClass = () => {
   }, 0);
 
   const handleDelete = (group) => {
-    fetch(`https://b7a12-summer-camp-server-side-nashif770.vercel.app/myselectedclasses/${group._id}`, {
-      method: "DELETE",
-    })
+    fetch(
+      `https://b7a12-summer-camp-server-side-nashif770.vercel.app/myselectedclasses/${group._id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if(data.deletedCount>0){
+        if (data.deletedCount > 0) {
           refetch();
         }
       });
@@ -55,7 +59,9 @@ const MySelectedClass = () => {
                 <td>{group.instructorName}</td>
                 <td>${group.price}</td>
                 <td className="flex m-auto">
-                  <button className="btn btn-primary m-auto">Enroll</button>
+                  <Link to={`/dashboard/payment/${group._id}`}>
+                    <button className="btn btn-primary m-auto">Enroll</button>
+                  </Link>
                   <button
                     onClick={() => handleDelete(group)}
                     className="btn bg-red-600 text-white m-auto"

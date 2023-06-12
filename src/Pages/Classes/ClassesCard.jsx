@@ -2,11 +2,30 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useStudentClass from "../../Hooks/useStudentClass";
 import useClasses from "../../Hooks/useClasses";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ClassesCard = ({ allClass }) => {
+
   const [approvedClass, setApprovedClass] = useState();
   const { user } = useContext(AuthContext);
   const [myClasses] = useStudentClass();
+  const [axiosSecure] = useAxiosSecure();
+  const [allUser, setAllUser] = useState()
+
+  // console.log(user)
+
+  useEffect(()=>{
+    axiosSecure.get(`http://localhost:5000/users`)
+    .then(res => {
+      setAllUser(res.data)
+    }
+    )
+  },[])
+
+  // console.log(allUser)
+  // console.log(user.email)
+
+  const currentUser = allUser?.find(myUser => myUser?.email == user?.email);
 
   useEffect(() => {
     const { status } = allClass;
@@ -63,7 +82,6 @@ const ClassesCard = ({ allClass }) => {
 
   return (
     <>
-      {/* {approvedClass && ( */}
       <div className="hero w-10/12 bg-base-200 m-3 rounded-lg">
         <div
           className={
@@ -92,35 +110,31 @@ const ClassesCard = ({ allClass }) => {
               </p>
             </div>
           </div>
-          
-          {!user? 
-          <div>
-            <button
-              onClick={() => handleAddClass(allClass)}
-              className="btn btn-primary text-white"
-            >
-              Add to My Class
-            </button>
-          </div>
-          :
-          <div>
-          {approvedClass && (
-            <button
-              onClick={() => handleAddClass(allClass)}
-              className="btn btn-primary text-white"
-              disabled={
-                allClass?.availableSeats == "0" ||
-                !allClass?.availableSeats ||
-                user?.role !== "student" && "disable"
-              }
-            >
-              Add to My Class
-            </button>
+
+          {!currentUser ? (
+            <div>
+              <button
+                onClick={() => handleAddClass(allClass)}
+                className="btn btn-primary text-white"
+              >
+                Add to My Class
+              </button>
+            </div>
+          ) : (
+            <div>
+              {approvedClass && (
+                <button
+                  onClick={() => handleAddClass(allClass)}
+                  className="btn btn-primary text-white"
+                  disabled= { currentUser.role !== "student" && true}
+                >
+                  Add to My Class
+                </button>
+              )}
+            </div>
           )}
-          </div>}
         </div>
       </div>
-      {/* )} */}
     </>
   );
 };

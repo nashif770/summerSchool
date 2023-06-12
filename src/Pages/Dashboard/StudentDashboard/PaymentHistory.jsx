@@ -29,6 +29,8 @@ const PaymentHistory = () => {
     (userData) => userData.email === user.email
   );
 
+  console.log(history)
+
   console.log(myHistory)
 
   let index = 1;
@@ -43,7 +45,7 @@ const PaymentHistory = () => {
             <tr>
               <th>#</th>
               <th>Transaction Id</th>
-              <th>Quantity</th>
+              <th>Class</th>
               <th>Price</th>
               <th>Status</th>
             </tr>
@@ -54,7 +56,7 @@ const PaymentHistory = () => {
               <tr key={payments._id}>
                 <th>{index++}</th>
                 <td>{payments.transactionId}</td>
-                <td>{payments.quantity}</td>
+                <td>{payments.classes}</td>
                 <td>${payments.price}</td>
                 <td>{payments.orderStatus}</td>
               </tr>
