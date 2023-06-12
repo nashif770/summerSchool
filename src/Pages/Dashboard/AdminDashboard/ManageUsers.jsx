@@ -6,11 +6,10 @@ const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
   const [users, setUsers] = useState({});
   useEffect(() => {
-    axiosSecure.get("http://localhost:5000/users").then((res) => setUsers(res));
+    axiosSecure.get("https://b7a12-summer-camp-server-side-nashif770.vercel.app/users").then((res) => setUsers(res));
   }, [users]);
 
   const handleMakeAdmin = (id) => {
-    console.log(id);
     const data = {
       role: "admin",
     };
@@ -24,7 +23,6 @@ const ManageUsers = () => {
   };
 
   const handleMakeInstructor = (id) => {
-    console.log(id);
     const data = {
       role: "instructor",
     };

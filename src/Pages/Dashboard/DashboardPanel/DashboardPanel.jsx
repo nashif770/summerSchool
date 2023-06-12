@@ -10,9 +10,11 @@ const DashboardPanel = () => {
   const [role, setRole] = useState("");
 
   useEffect(() => {
-    axiosSecure.get("http://localhost:5000/users").then((res) => {
-      setAllUsers(res.data);
-    });
+    axiosSecure
+      .get("https://b7a12-summer-camp-server-side-nashif770.vercel.app/users")
+      .then((res) => {
+        setAllUsers(res.data);
+      });
   }, []);
 
   useEffect(() => {
@@ -21,7 +23,6 @@ const DashboardPanel = () => {
     );
     setRole(filteredUsers?.role);
   }, [allUsers]);
-
 
   return (
     <div className="drawer lg:drawer-open my-3">
@@ -36,64 +37,75 @@ const DashboardPanel = () => {
         </label>
         <Outlet></Outlet>
       </div>
+
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+        <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+          <h1 className="text-center text-3xl">User Panel</h1>
+          <div className="divider"></div>
+          <li>
+            <NavLink to={"/dashboard/userprofile"}>User Profile</NavLink>
+          </li>
+        </ul>
         {/* Student Section*/}
-        {role === "student" && (
-          <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
-            <h1 className="text-center text-3xl">Student Panel</h1>
-            <div className="divider"></div>
-            <li>
-              <NavLink to={"/dashboard/selectedclass"}>
-                Selected Classes
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/pay"}>Payment Section</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/paymenthistory"}>
-                Payment History
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/enroll"}>Enrolled Class</NavLink>
-            </li>
-          </ul>
-        )}
+        {role === "student" ||
+          (role === "masterAdmin" && (
+            <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+              <h1 className="text-center text-3xl">Student Panel</h1>
+              <div className="divider"></div>
+              <li>
+                <NavLink to={"/dashboard/selectedclass"}>
+                  Selected Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/pay"}>Payment Section</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/paymenthistory"}>
+                  Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/enroll"}>Enrolled Class</NavLink>
+              </li>
+            </ul>
+          ))}
         {/* Student Section*/}
         {/* Instructor Section*/}
-        {role === "instructor" && (
-          <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
-            <h1 className="text-center text-3xl">Instructor Panel</h1>
-            <div className="divider"></div>
-            <li>
-              <NavLink to={"/dashboard/addclass"}>Add Class</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/topenrolled"}>
-                Top Enrolled Class
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/feedback"}>FeedBack</NavLink>
-            </li>
-          </ul>
-        )}
+        {role === "instructor" ||
+          (role === "masterAdmin" && (
+            <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+              <h1 className="text-center text-3xl">Instructor Panel</h1>
+              <div className="divider"></div>
+              <li>
+                <NavLink to={"/dashboard/addclass"}>Add Class</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/topenrolled"}>
+                  Top Enrolled Class
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/feedback"}>FeedBack</NavLink>
+              </li>
+            </ul>
+          ))}
         {/* Instructor Section*/}
         {/* Admin Section*/}
-        {role === "admin"  && (
-          <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
-            <h1 className="text-center text-3xl">Admin Panel</h1>
-            <div className="divider"></div>
-            <li>
-              <NavLink to={"/dashboard/manageclass"}>Manage Class</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/dashboard/manageuser"}>Manage Users</NavLink>
-            </li>
-          </ul>
-        )}
+        {role === "admin" ||
+          (role === "masterAdmin" && (
+            <ul className="menu p-4 w-80 bg-base-200 text-base-content mt-3">
+              <h1 className="text-center text-3xl">Admin Panel</h1>
+              <div className="divider"></div>
+              <li>
+                <NavLink to={"/dashboard/manageclass"}>Manage Class</NavLink>
+              </li>
+              <li>
+                <NavLink to={"/dashboard/manageuser"}>Manage Users</NavLink>
+              </li>
+            </ul>
+          ))}
         {/* Admin Section*/}
       </div>
     </div>

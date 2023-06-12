@@ -15,8 +15,7 @@ const MySelectedClass = () => {
   }, 0);
 
   const handleDelete = (group) => {
-    console.log(group._id);
-    fetch(`http://localhost:5000/myselectedclasses/${group._id}`, {
+    fetch(`https://b7a12-summer-camp-server-side-nashif770.vercel.app/myselectedclasses/${group._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

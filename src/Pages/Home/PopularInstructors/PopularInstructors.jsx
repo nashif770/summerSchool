@@ -6,7 +6,7 @@ const PopularInstructors = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/topinstructors")
+      .get("https://b7a12-summer-camp-server-side-nashif770.vercel.app/topinstructors")
       .then((res) => {
         setInstructors(res.data);
       })
@@ -14,8 +14,6 @@ const PopularInstructors = () => {
         console.log(err);
       });
   }, []);
-
-  console.log(instructors);
 
   return (
     <div className="grid grid-cols-3 gap-1 m-auto p-6">

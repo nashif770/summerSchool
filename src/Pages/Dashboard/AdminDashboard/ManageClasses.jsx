@@ -20,11 +20,9 @@ const ManageClasses = () => {
   //   console.log(allClass);
 
   const handleDeny = (id) => {
-    console.log(id);
     const data = {
       status: "Denied",
     };
-    console.log(data);
     axiosSecure
       .patch(`/classes/${id}`, data)
       .then((res) => console.log(res))
@@ -35,7 +33,6 @@ const ManageClasses = () => {
   };
 
   const handleApprove = (id) => {
-    console.log(id);
     const data = {
       status: "Approved",
     };
@@ -52,7 +49,6 @@ const ManageClasses = () => {
   //   Class Image, Class name, Instructor name, Instructor email, Available seats, Price, Status(pending/approved/denied) 3 buttons( Approve, Deny and send feedback)**.
 
   const onSubmitFeedback = (data, id) => {
-    console.log(id)
     const feedback = {
       feedBack: data.adminfeedback,
     };
@@ -132,41 +128,46 @@ const ManageClasses = () => {
                       </button>
                     </>
                   )}
-
-                  {group.status === "Denied" && (
-                    <>
-                      <button
-                        onClick={() => handleApprove(group._id)}
-                        className="btn btn-primary m-auto mx-3 btn-sm"
-                        disabled={true}
-                      >
-                        Approve
-                      </button>
-                      <button
-                        onClick={() => handleDeny(group._id)}
-                        className="btn bg-red-600 text-white m-auto  mx-3 btn-sm"
-                        // disabled={btnDisable.includes(group._id)}
-                        disabled={true}
-                      >
-                        Denied
-                      </button>
+                  <>
+                    {group.status === "Denied" && (
+                      <>
+                        <button
+                          onClick={() => handleApprove(group._id)}
+                          className="btn btn-primary m-auto mx-3 btn-sm"
+                          disabled={true}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => handleDeny(group._id)}
+                          className="btn bg-red-600 text-white m-auto  mx-3 btn-sm"
+                          // disabled={btnDisable.includes(group._id)}
+                          disabled={true}
+                        >
+                          Denied
+                        </button>
+                      </>
+                    )}
+                    <div>
                       <button
                         className="btn btn-warning m-auto  mx-3 btn-sm"
                         onClick={() => window[group._id].showModal()}
-                        disabled={group.adminfeedback && true}
                       >
                         FeedBack
                       </button>
                       <dialog id={group._id} className="modal">
                         <form
-                          onSubmit={handleSubmit((data)=>onSubmitFeedback(data, group._id))}
+                          onSubmit={handleSubmit((data) =>
+                            onSubmitFeedback(data, group._id)
+                          )}
                           method="dialog"
                           className="modal-box"
                         >
                           <p className="text-center">
                             Press
                             <span className="text-red-600 font-bold">
-                              ESC
+                              {" "}
+                              ESC{" "}
                             </span>
                             key to Close the Modal
                           </p>
@@ -175,7 +176,9 @@ const ManageClasses = () => {
                               <span className="label-text">Write Feedback</span>
                             </label>
                             <textarea
-                              {...register("adminfeedback", { required: true })}
+                              {...register("adminfeedback", {
+                                required: true,
+                              })}
                               name="adminfeedback"
                               type="text"
                               placeholder="Write your feedback here"
@@ -184,15 +187,14 @@ const ManageClasses = () => {
                               cols={40}
                             ></textarea>
                           </div>
-                          <button className="btn btn-warning btn-sm mt-3" >
+                          <button className="btn btn-warning btn-sm mt-3">
                             Send Feedback
                           </button>
                         </form>
                       </dialog>
-
-                      {/* --------------------- Modal ------------------- */}
-                    </>
-                  )}
+                    </div>
+                    {/* --------------------- Modal ------------------- */}
+                  </>
                 </td>
               </tr>
             ))}

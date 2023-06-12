@@ -15,7 +15,7 @@ const navlist = (
       <Link to={"/classes"}>Classes</Link>
     </li>
     <li>
-      <Link to={"/dashboard"}>Dashboard</Link>
+      <Link to={"/dashboard/userprofile"}>Dashboard</Link>
     </li>
   </>
 );
@@ -60,7 +60,12 @@ const Navbar = () => {
             {navlist}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">Summer-Slam</a>
+        <div className="flex flex-row align-middle">
+          <Link to={"/"} className="btn btn-ghost normal-case text-xl">
+            Summer-Slam
+          </Link>
+          <img className="h-9 " src="https://i.ibb.co/Y20XD2H/icon.png" alt="" />
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navlist}</ul>
@@ -68,9 +73,11 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <Link to={"/dashboard/selectedclass"} className="btn mx-6">
-              Carts {data?.length}
-            </Link>
+            {data?.role === "student" || data?.role === "masterAdmin" && (
+              <Link to={"/dashboard/selectedclass"} className="btn mx-6">
+                Carts {data?.length}
+              </Link>
+            )}
             <img
               src={user?.photoURL}
               alt=""

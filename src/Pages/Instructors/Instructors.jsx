@@ -1,5 +1,6 @@
 import React from "react";
 import useInstructors from "../../Hooks/useInstructors";
+import { Link } from "react-router-dom";
 
 const Instructors = () => {
   const [instructors] = useInstructors();
@@ -10,11 +11,11 @@ const Instructors = () => {
         {instructors.map((instructor) => (
           <div
             key={instructor._id}
-            className="hero w-11/12 bg-base-200 m-3 rounded-lg"
+            className="hero w-10/12 bg-base-200 m-3 rounded-lg"
           >
             <div className="hero-content flex-col ">
               <img
-                src="https://i.ibb.co/CJ2vs6L/40-K-20180520124148.jpg"
+                src={instructor.image}
                 className="max-w-sm rounded-lg shadow-2xl w-1/2"
               />
               <div className="w-full">
@@ -32,18 +33,22 @@ const Instructors = () => {
                   </span>
                 </p>
                 <div className="divider"></div>
-                <p className="font-bold text-center">
-                  Classes
-                </p>
+                <p className="font-bold text-center">Classes</p>
                 <div className="divider"></div>
-                  <span className="font-normal">{instructor.classes[0]}</span><br></br>
-                  <span className="font-normal">{instructor.classes[1]}</span><br></br>
-                  <span className="font-normal">{instructor.classes[2]}</span><br></br>
-                  <span className="font-normal">{instructor.classes[3]}</span><br></br>
+                <span className="font-normal">{instructor.classes[0]}</span>
+                <br></br>
+                <span className="font-normal">{instructor.classes[1]}</span>
+                <br></br>
+                <span className="font-normal">{instructor.classes[2]}</span>
+                <br></br>
+                <span className="font-normal">{instructor.classes[3]}</span>
+                <br></br>
               </div>
-              <button className="btn btn-primary text-white">
-                See Classes
-              </button>
+              <Link to={`/instructorsDetails/${instructor._id}`}>
+                <button className="btn btn-primary text-white">
+                  See Classes
+                </button>
+              </Link>
             </div>
           </div>
         ))}

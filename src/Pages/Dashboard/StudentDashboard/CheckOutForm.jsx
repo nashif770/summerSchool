@@ -9,17 +9,21 @@ const CheckOutForm = ({ myClasses, price }) => {
   const elements = useElements();
   const { user } = useAuth(AuthContext);
   const [axiosSecure] = useAxiosSecure();
-  
+
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    axiosSecure.post("/create-payment-intent", { price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret);
-    });
+    axiosSecure
+      .post(
+        "https://b7a12-summer-camp-server-side-nashif770.vercel.app/create-payment-intent",
+        { price }
+      )
+      .then((res) => {
+        setClientSecret(res.data.clientSecret);
+      });
   }, [price]);
 
   const handleSubmit = async (event) => {
@@ -41,7 +45,6 @@ const CheckOutForm = ({ myClasses, price }) => {
       setCardError(error.message);
     } else {
       setCardError("");
-      // console.log("payment method", paymentMethod);
     }
     setProcessing(true);
 
@@ -59,7 +62,6 @@ const CheckOutForm = ({ myClasses, price }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log("payment-intent", paymentIntent);
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
       const transactionId = paymentIntent.id;
@@ -77,7 +79,6 @@ const CheckOutForm = ({ myClasses, price }) => {
         orderStatus: "pending",
       };
 
-      console.log(myClasses);
 
       myClasses.map((group) => {
         axiosSecure.post("payHistory", group).then((res) => {

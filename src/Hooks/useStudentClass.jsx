@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
         queryKey: ["myselectedclasses",user?.email],
         queryFn: async () => {
         const response = await fetch(
-            `http://localhost:5000/myselectedclasses?email=${user?.email}`
+            `https://b7a12-summer-camp-server-side-nashif770.vercel.app/myselectedclasses?email=${user?.email}`
         );
         return response.json();
         },

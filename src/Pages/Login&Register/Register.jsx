@@ -7,7 +7,7 @@ import SocialLogin from "./SocialLogin";
 
 const Register = () => {
   const { createUser, updateUser } = useContext(AuthContext);
-  const [axiosSecure] = useAxiosSecure()
+  const [axiosSecure] = useAxiosSecure();
 
   const [matchPass, setMatchPass] = useState(true);
   const navigate = useNavigate();
@@ -19,7 +19,6 @@ const Register = () => {
     setMatchPass(confirmPassword === password);
   };
 
-  // console.log(matchPass)
 
   const {
     register,
@@ -34,21 +33,23 @@ const Register = () => {
       return;
     }
 
-    createUser(data.email, data.password)
-    .then((result) => {
-
+    createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
 
       updateUser(data.name, data.photoURL)
         .then(() => {
-          const userInfo = {name: data.name, email: data.email, role: "student"}
-          axiosSecure.post('http://localhost:5000/users', userInfo)
-          .then(res=>{
-            console.log(res)
-          })          
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            role: "student",
+          };
+          axiosSecure
+            .post("https://b7a12-summer-camp-server-side-nashif770.vercel.app/users", userInfo)
+            .then((res) => {
+              console.log(res);
+            });
           reset();
-          navigate('/');  
+          navigate("/");
         })
         .catch((error) => {
           console.log(error);
@@ -61,7 +62,10 @@ const Register = () => {
       <div className="hero-content w-full flex-col">
         <div className="card flex-shrink-0 w-1/3 shadow-2xl bg-base-100">
           <h1 className="text-4xl font-bold text-center mt-3">Register now!</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="card-body pb-0 pt-3">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body pb-0 pt-3"
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -161,17 +165,17 @@ const Register = () => {
                 </span>
               )}
             </div>
-              <button className="btn btn-primary mt-3">Register</button>
+            <button className="btn btn-primary mt-3">Register</button>
           </form>
-              <div className="p-5 pt-0 flex flex-col align-middle">
-              <SocialLogin></SocialLogin>
-              <p className="text-sm mt-2">
-                Already Have an Account?{" "}
-                <span className="text-blue-500">
-                  <Link to={"/login"}>Login</Link>
-                </span>
-              </p>
-              </div>
+          <div className="p-5 pt-0 flex flex-col align-middle">
+            <SocialLogin></SocialLogin>
+            <p className="text-sm mt-2">
+              Already Have an Account?{" "}
+              <span className="text-blue-500">
+                <Link to={"/login"}>Login</Link>
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

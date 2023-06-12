@@ -2,11 +2,11 @@ import React from "react";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col m-3">
-      <div className="carousel w-full">
+    <div className="flex flex-col m-3 p-3">
+      <div className="carousel w-10/12 m-auto">
         <div id="slide1" className="carousel-item relative w-full">
           <img
-            src="https://i.ibb.co/48063Vn/banner2.jpg"
+            src={"https://i.ibb.co/F07HXmL/Banner1.jpg"}
             className="w-full"
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -20,7 +20,7 @@ const Banner = () => {
         </div>
         <div id="slide2" className="carousel-item relative w-full">
           <img
-            src="https://i.ibb.co/48063Vn/banner2.jpg"
+            src="https://i.ibb.co/nRDfBFQ/Banner2.jpg"
             className="w-full"
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -34,7 +34,7 @@ const Banner = () => {
         </div>
         <div id="slide3" className="carousel-item relative w-full">
           <img
-            src="https://i.ibb.co/48063Vn/banner2.jpg"
+            src="https://i.ibb.co/ct2Wzyt/Bnner2.jpg"
             className="w-full"
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
@@ -48,7 +48,7 @@ const Banner = () => {
         </div>
         <div id="slide4" className="carousel-item relative w-full">
           <img
-            src="https://i.ibb.co/48063Vn/banner2.jpg"
+            src="https://i.ibb.co/tbk3XDk/Banner4.jpg"
             className="w-full"
           />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

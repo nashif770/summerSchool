@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import SocialLogin from "./SocialLogin";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
@@ -19,7 +20,6 @@ const Login = () => {
 
     signInUser(email, password).then((result) => {
       const user = result.user;
-      console.log(user);
       navigate(from, {replace: true})
     });
   };
@@ -62,6 +62,7 @@ const Login = () => {
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>

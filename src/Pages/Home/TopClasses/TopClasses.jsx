@@ -3,8 +3,6 @@ import useTopClass from "../../../Hooks/useTopClass";
 
 const TopClasses = () => {
   const [tClass] = useTopClass();
-
-  console.log(tClass);
   return (
     <div>
       <div className="grid grid-cols-3 gap-1 m-auto p-6">

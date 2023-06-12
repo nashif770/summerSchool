@@ -18,10 +18,9 @@ const TopEnrolledClasses = () => {
   }, [email]);
 
   const handleDelete = (group) => {
-    console.log("delete");
 
     axiosSecure
-      .delete(`http://localhost:5000/instructorClasses/${group._id}`)
+      .delete(`https://b7a12-summer-camp-server-side-nashif770.vercel.app/instructorClasses/${group._id}`)
       .then((response) => {
         console.log(response.data);
         if (response.data.deletedCount > 0) {
@@ -32,8 +31,6 @@ const TopEnrolledClasses = () => {
         console.log(error);
       });
   };
-
-  console.log(topEnrolled);
 
   let index = 1;
 

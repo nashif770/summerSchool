@@ -16,8 +16,6 @@ const Payment = () => {
     return totalPrice;
   }, 0);
 
-  console.log(totalPrice);
-
   return (
     <>
       <Headings heading={"Pay and Enroll"} subHeading={""}></Headings>

@@ -8,19 +8,19 @@ const ClassesCard = ({ allClass }) => {
   const { user } = useContext(AuthContext);
   const [myClasses] = useStudentClass();
 
-  // console.log(allClass);
-
-  const { status } = allClass;
-
-  console.log(status)
-
   useEffect(() => {
+    const { status } = allClass;
     if (status === "Approved") {
       setApprovedClass(true);
     }
-  }, [status]);
+  }, []);
 
   const handleAddClass = (allClass) => {
+    if (!user) {
+      alert("Please Login");
+      return;
+    }
+
     const {
       _id,
       availableSeats,
@@ -45,15 +45,16 @@ const ClassesCard = ({ allClass }) => {
       sessions,
     };
 
-    console.log(selectedClass);
-
-    fetch("http://localhost:5000/myselectedclasses", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(selectedClass),
-    })
+    fetch(
+      "https://b7a12-summer-camp-server-side-nashif770.vercel.app/myselectedclasses",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectedClass),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -63,42 +64,62 @@ const ClassesCard = ({ allClass }) => {
   return (
     <>
       {/* {approvedClass && ( */}
-        <div className="hero w-11/12 bg-base-200 m-3 rounded-lg">
-          <div className="hero-content flex-col ">
-            <img
-              src="https://i.ibb.co/CJ2vs6L/40-K-20180520124148.jpg"
-              className="max-w-sm rounded-lg shadow-2xl w-1/2"
-            />
-            <div className="w-full">
-              <h1 className="text-3xl font-bold">{allClass.className}</h1>
-              <p className="py-6 font-bold">
-                Instructor:{" "}
-                <span className=" font-normal ">{allClass.instructorName}</span>
+      <div className="hero w-10/12 bg-base-200 m-3 rounded-lg">
+        <div
+          className={
+            allClass.availableSeats < 1
+              ? "hero-content flex-col w-full bg-red-600"
+              : "hero-content flex-col w-full rounded"
+          }
+        >
+          <img
+            src={allClass.image}
+            className="max-w-sm rounded-lg shadow-2xl h-44 "
+          />
+          <div className="w-full">
+            <h1 className="text-3xl font-bold">{allClass.className}</h1>
+            <p className="py-6 font-bold">
+              Instructor:{" "}
+              <span className=" font-normal ">{allClass.instructorName}</span>
+            </p>
+            <div className="flex justify-between">
+              <p className="font-bold">
+                Available Seats:{" "}
+                <span className=" font-normal ">{allClass.availableSeats}</span>
               </p>
-              <div className="flex justify-between">
-                <p className="font-bold">
-                  Available Seats:
-                  <span className=" font-normal ">
-                    {allClass.availableSeats}
-                  </span>
-                </p>
-                <p className="font-bold">
-                  Price: <span className="font-normal"> ${allClass.price}</span>
-                </p>
-              </div>
+              <p className="font-bold">
+                Price: <span className="font-normal"> ${allClass.price}</span>
+              </p>
             </div>
-           { approvedClass && <button
+          </div>
+          
+          {!user? 
+          <div>
+            <button
+              onClick={() => handleAddClass(allClass)}
+              className="btn btn-primary text-white"
+            >
+              Add to My Class
+            </button>
+          </div>
+          :
+          <div>
+          {approvedClass && (
+            <button
               onClick={() => handleAddClass(allClass)}
               className="btn btn-primary text-white"
               disabled={
-                allClass?.availableSeats == '0' ||
-                (!allClass?.availableSeats && "disable")
+                allClass?.availableSeats == "0" ||
+                !allClass?.availableSeats ||
+                user?.role !== "student" && "disable"
               }
             >
               Add to My Class
-            </button>}
-          </div>
+            </button>
+          )}
+          </div>}
         </div>
+      </div>
       {/* )} */}
     </>
   );

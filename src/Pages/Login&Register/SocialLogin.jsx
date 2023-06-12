@@ -14,14 +14,13 @@ const SocialLogin = () => {
   const handleGoogle = () => {
     googleSignIn().then((result) => {
       const loggedInUser = result.user;
-      console.log(loggedInUser);
 
       const userInfo = {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
         role: "student",
       };
-      axiosSecure.post("http://localhost:5000/users", userInfo).then((res) => {
+      axiosSecure.post("https://b7a12-summer-camp-server-side-nashif770.vercel.app/users", userInfo).then((res) => {
         console.log(res);
       });
       navigate("/", { replace: true });

@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import axios from "axios";
 import Headings from "../../../Componants/Headings";
+import useAuth from "../../../Hooks/useAuth";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const PaymentHistory = () => {
+  const { user } = useContext(AuthContext);
   const [history, setHistory] = useState([]);
+  const [axiosSecure] = useAxiosSecure();
+  console.log(user.email);
+  // TODO: Send email to backend
+  useEffect(() => {
+    axiosSecure
+      .get(
+        `https://b7a12-summer-camp-server-side-nashif770.vercel.app/payments`,
+        user.email
+      )
+      .then((response) => {
+        setHistory(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },[]);
 
-  axios
-    .get("http://localhost:5000/payments")
-    .then((response) => {
-      setHistory(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const myHistory = history?.filter(
+    (userData) => userData.email === user.email
+  );
+
+  console.log(myHistory)
 
   let index = 1;
   return (
@@ -34,12 +50,12 @@ const PaymentHistory = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {history?.map((payments) => (
+            {myHistory?.map((payments) => (
               <tr key={payments._id}>
                 <th>{index++}</th>
                 <td>{payments.transactionId}</td>
                 <td>{payments.quantity}</td>
-                <td>${payments.price}</td>  
+                <td>${payments.price}</td>
                 <td>{payments.orderStatus}</td>
               </tr>
             ))}

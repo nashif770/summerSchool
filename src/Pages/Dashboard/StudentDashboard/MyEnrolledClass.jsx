@@ -1,20 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import axios from "axios";
 import Headings from "../../../Componants/Headings";
 
 const MyEnrolledClass = () => {
-  const axiosSecure = useAxiosSecure();
+  const [axiosSecure] = useAxiosSecure();
   const [enrolledClasses, setEnrolledClasses] = useState([]);
+// TODO: send email to backend 
+  useEffect(() => {
+    axiosSecure
+      .get("/payHistory")
+      .then((response) => {
+        setEnrolledClasses(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [enrolledClasses]);
 
-  axiosSecure
-    .get("http://localhost:5000/payHistory")
-    .then((response) => {
-      setEnrolledClasses(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  console.log(enrolledClasses)
+
+  // enrolledClasses.filter(myclasses => myclasses.email === )
 
   let index = 1;
 

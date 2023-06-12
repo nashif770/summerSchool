@@ -4,7 +4,7 @@ const useTopClass = () => {
     const [tClass, setTclass] = useState([])
     const [loading, setLoading] = useState(true)
     useEffect(()=>{
-        fetch('http://localhost:5000/topclasses')
+        fetch('https://b7a12-summer-camp-server-side-nashif770.vercel.app/topclasses')
         .then(res => res.json())
         .then(data => {
             setTclass(data)

@@ -16,6 +16,8 @@ import FeedBack from "../Pages/Dashboard/InstructorsDashboard/FeedBack";
 import TopEnrolledClasses from "../Pages/Dashboard/InstructorsDashboard/TopEnrolledClasses";
 import ManageClasses from "../Pages/Dashboard/AdminDashboard/ManageClasses";
 import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
+import UserDashboard from "../Pages/Dashboard/UserDashboard/UserDashboard";
+import InstructorsDetail from "../Pages/Instructors/InstructorsDetail";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -35,19 +37,16 @@ export const router = createBrowserRouter([
       },
       {
         path: "classes",
-        element: (
-          <PrivateRoute>
-            <Classes></Classes>
-          </PrivateRoute>
-        ),
+        element: <Classes></Classes>,
       },
       {
         path: "instructors",
-        element: (
-          <PrivateRoute>
-            <Instructors></Instructors>
-          </PrivateRoute>
-        ),
+        element: <Instructors></Instructors>,
+      },
+      {
+        path: "instructorsDetails/:id",
+        element: <InstructorsDetail></InstructorsDetail>,
+        loader: ({params}) =>fetch(`http://localhost:5000/instructors/${params.id}`),
       },
     ],
   },
@@ -59,6 +58,11 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // User section
+      {
+        path: "userprofile",
+        element: <UserDashboard></UserDashboard>,
+      },
       // student section
       {
         path: "selectedclass",
