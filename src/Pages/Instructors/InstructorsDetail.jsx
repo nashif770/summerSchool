@@ -7,8 +7,8 @@ const InstructorsDetail = () => {
   const instructorId = id[0];
 
   return (
-    <div className="flex flex-row m-5 border w-3/4 m-auto">
-      <img className="m-3 w-1/3" src={instructorId.image} alt="" />
+    <div className="flex flex-row w-3/4 m-auto">
+      <img className="m-3 w-1/3 rounded-lg shadow-2xl h-80 mt-3" src={instructorId.image} alt="" />
       <div className="m-3">
         <h2 className="text-2xl"><span className="font-bold"> Name: </span>{instructorId.name}</h2>
         <h2 className="text-2xl"><span className="font-bold"> email: </span>{instructorId.email}</h2>

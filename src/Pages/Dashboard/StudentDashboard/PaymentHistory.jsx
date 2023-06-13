@@ -29,10 +29,6 @@ const PaymentHistory = () => {
     (userData) => userData.email === user.email
   );
 
-  console.log(history)
-
-  console.log(myHistory)
-
   let index = 1;
   return (
     <>

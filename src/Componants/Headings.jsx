@@ -2,13 +2,13 @@ import React from "react";
 
 const Headings = ({ heading, subHeading }) => {
   return (
-    <div>
-      <div className="divider"></div>
-      <div className="grid h-32 card bg-base-300 rounded-none m-3 place-items-center rounded">
-        <h1 className="text-3xl text-center mb-0">{heading}</h1>
-        <p className="text-1xl text center mt-0">{subHeading}</p>
+    <div className="bg-gray-100 mb-3">
+      <div className="flex justify-center items-center py-6">
+        <div className="max-w-2xl p-6 bg-white shadow-lg rounded-lg">
+          <h1 className=" text-center text-3xl font-bold mb-2">{heading}</h1>
+          <p className=" text-center text-lg text-gray-600">{subHeading}</p>
+        </div>
       </div>
-      <div className="divider"></div>
     </div>
   );
 };

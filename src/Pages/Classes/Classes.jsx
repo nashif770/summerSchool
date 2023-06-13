@@ -10,7 +10,7 @@ const Classes = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-1 m-auto p-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6">
         {allClass.map((allClass) => (
           <ClassesCard key={allClass._id} allClass={allClass}></ClassesCard>
         ))}

@@ -11,7 +11,7 @@ const TopClasses = () => {
         heading={"Our Classes"}
         subHeading={"Find the best one for you"}
       ></Headings>
-      <div className="grid grid-cols-3 gap-1 m-auto p-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6">
         {tClass.map((cl) => (
           <div key={cl._id} className="hero w-11/12 bg-base-200 m-3 rounded-lg">
             <motion.div

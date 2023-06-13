@@ -26,7 +26,7 @@ const PopularInstructors = () => {
         heading={"Our Instructors"}
         subHeading={"Find the best one for you"}
       ></Headings>
-      <div className="grid grid-cols-3 gap-1 m-auto p-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-1 m-auto p-6">
         {instructors.map((instructor) => (
           <motion.div
             key={instructor._id}
@@ -41,7 +41,7 @@ const PopularInstructors = () => {
               <div className="hero-content flex-col ">
                 <img
                   src={instructor.image}
-                  className="max-w-sm rounded-lg shadow-2xl w-1/2"
+                  className="rounded-lg shadow-2xl h-80 mt-3"
                 />
                 <div className="w-full">
                   <h1 className="text-3xl font-bold mt-3">

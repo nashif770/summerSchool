@@ -17,7 +17,6 @@ const ManageClasses = () => {
     formState: { errors },
   } = useForm();
 
-  //   console.log(allClass);
 
   const handleDeny = (id) => {
     const data = {
@@ -36,7 +35,7 @@ const ManageClasses = () => {
     const data = {
       status: "Approved",
     };
-    console.log(data);
+    
     axiosSecure
       .patch(`/classes/${id}`, data)
       .then((res) => console.log(res))
@@ -52,7 +51,7 @@ const ManageClasses = () => {
     const feedback = {
       feedBack: data.adminfeedback,
     };
-    console.log(feedback);
+    
     axiosSecure
       .patch(`/classes/${id}`, data)
       .then((res) => console.log(res))

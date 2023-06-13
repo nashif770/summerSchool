@@ -86,13 +86,30 @@ const CheckOutForm = ({ myClasses, price }) => {
         }
       });
 
+      axiosSecure
+      .patch(`/classes/${myClasses.classId}`, price)
+      .then((res) => console.log(res))
+      .catch((error) => {
+        console.log(error);
+      });
+
       axiosSecure.post("payments", payment).then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
           console.log("data entered");
         }
       });
-      
+
+      console.log(myClasses._id)
+
+      axiosSecure.delete(`myselectedclasses/${myClasses._id}`)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
   };
   return (
