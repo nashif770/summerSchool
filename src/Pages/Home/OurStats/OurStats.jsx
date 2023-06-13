@@ -9,7 +9,7 @@ const OurStats = () => {
   const [instructors] = useInstructors();
   const [axiosSecure] = useAxiosSecure();
 
-  const [students, setStudents] = useState({});
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     axiosSecure
@@ -17,7 +17,7 @@ const OurStats = () => {
       .then((res) => setStudents(res.data));
   }, [students]);
 
-  const allStudents = students.filter((student) => student.role === "student");
+  const allStudents = students?.filter((student) => student.role === "student");
 
   return (
     <div className="flex flex-col justify-center">
