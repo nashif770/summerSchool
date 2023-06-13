@@ -58,7 +58,8 @@ const CheckOutForm = ({ myClasses, price }) => {
           },
         },
       });
-    console.log("calling", paymentIntent);
+    
+
     if (confirmError) {
       console.log(confirmError);
     }
@@ -91,6 +92,7 @@ const CheckOutForm = ({ myClasses, price }) => {
           console.log("data entered");
         }
       });
+      
     }
   };
   return (

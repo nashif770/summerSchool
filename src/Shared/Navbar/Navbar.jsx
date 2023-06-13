@@ -64,7 +64,11 @@ const Navbar = () => {
           <Link to={"/"} className="btn btn-ghost normal-case text-xl">
             Summer-Slam
           </Link>
-          <img className="h-9 " src="https://i.ibb.co/Y20XD2H/icon.png" alt="" />
+          <img
+            className="h-9 "
+            src="https://i.ibb.co/Y20XD2H/icon.png"
+            alt=""
+          />
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -73,11 +77,12 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            {data?.role === "student" || data?.role === "masterAdmin" && (
-              <Link to={"/dashboard/selectedclass"} className="btn mx-6">
-                Carts {data?.length}
-              </Link>
-            )}
+            {data?.role === "student" ||
+              (data?.role === "masterAdmin" && (
+                <Link to={"/dashboard/selectedclass"} className="btn mx-6">
+                  Carts {data?.length}
+                </Link>
+              ))}
             <img
               src={user?.photoURL}
               alt=""

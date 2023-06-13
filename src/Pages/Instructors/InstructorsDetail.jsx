@@ -6,8 +6,6 @@ const InstructorsDetail = () => {
 
   const instructorId = id[0];
 
-  console.log(instructorId);
-
   return (
     <div className="flex flex-row m-5 border w-3/4 m-auto">
       <img className="m-3 w-1/3" src={instructorId.image} alt="" />

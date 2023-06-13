@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Headings from "../../../Componants/Headings";
+import axios from "axios";
 
 const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -22,17 +23,27 @@ const ManageUsers = () => {
       });
   };
 
-  const handleMakeInstructor = (id) => {
+  const handleMakeInstructor = (group) => {
     const data = {
       role: "instructor",
     };
-    console.log(data);
+    const id = group._id;
+    
+    console.log(id)
     axiosSecure
-      .patch(`/users/${id}`, data)
+      .patch(`/users/${group._id}`, data)
       .then((res) => console.log(res))
       .catch((error) => {
         console.log(error);
       });
+
+
+    // axiosSecure
+    //   .post(`http://localhost:5000/instructors/`, group)
+    //   .then((res) => console.log(res))
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   };
 
   let index = 1;
@@ -74,7 +85,7 @@ const ManageUsers = () => {
                     className="btn btn-primary m-auto btn-sm"
                     disabled={group.role === "instructor" && true}
                     onClick={() => {
-                      handleMakeInstructor(group._id);
+                      handleMakeInstructor(group);
                     }}
                   >
                     Make Instructor

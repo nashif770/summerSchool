@@ -6,10 +6,6 @@ const UserDashboard = () => {
   const { user } = useContext(AuthContext);
 
   
-  const createdAtTimestamp = user.reloadUserInfo.createdAt;
-    const createdAtDate = new Date(createdAtTimestamp);
-  
-  console.log(createdAtDate);
   return (
     <div>
       <Headings heading={"User Profile"}></Headings>

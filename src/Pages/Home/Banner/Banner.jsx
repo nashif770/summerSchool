@@ -1,8 +1,10 @@
 import React from "react";
+import Headings from "../../../Componants/Headings";
 
 const Banner = () => {
   return (
     <div className="flex flex-col m-3 p-3">
+      <Headings heading={'Elevate Your Skills, Embrace the Summer Spirit'} subHeading={'Summer Slammers Summer School'} ></Headings>
       <div className="carousel w-10/12 m-auto">
         <div id="slide1" className="carousel-item relative w-full">
           <img
@@ -63,7 +65,7 @@ const Banner = () => {
       </div>
       <div className="m-3 w-full text-center">
         <h1 className="text-5xl">
-          Elevate Your Skills, Embrace the Summer Spirit
+          
         </h1>
         <p className="mt-3">
           Join our Martial Arts Summer School and embark on an exciting journey
@@ -78,3 +80,5 @@ const Banner = () => {
 };
 
 export default Banner;
+
+

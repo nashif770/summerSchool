@@ -9,7 +9,7 @@ const PaymentHistory = () => {
   const { user } = useContext(AuthContext);
   const [history, setHistory] = useState([]);
   const [axiosSecure] = useAxiosSecure();
-  console.log(user.email);
+  
   // TODO: Send email to backend
   useEffect(() => {
     axiosSecure

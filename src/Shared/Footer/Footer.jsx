@@ -11,7 +11,7 @@ const Footer = () => {
   </div> 
   <div>
     <div className="grid grid-flow-col gap-4">
-      <a>Summer Slam</a>
+      <a>Summer Slammers Summer School</a>
     </div>
   </div> 
   <div>

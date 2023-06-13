@@ -12,18 +12,13 @@ const ClassesCard = ({ allClass }) => {
   const [axiosSecure] = useAxiosSecure();
   const [allUser, setAllUser] = useState()
 
-  // console.log(user)
-
   useEffect(()=>{
-    axiosSecure.get(`http://localhost:5000/users`)
+    axiosSecure.get(`https://b7a12-summer-camp-server-side-nashif770-nashif770.vercel.app/users`)
     .then(res => {
       setAllUser(res.data)
     }
     )
   },[])
-
-  // console.log(allUser)
-  // console.log(user.email)
 
   const currentUser = allUser?.find(myUser => myUser?.email == user?.email);
 

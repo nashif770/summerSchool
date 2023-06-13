@@ -18,6 +18,7 @@ import ManageClasses from "../Pages/Dashboard/AdminDashboard/ManageClasses";
 import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
 import UserDashboard from "../Pages/Dashboard/UserDashboard/UserDashboard";
 import InstructorsDetail from "../Pages/Instructors/InstructorsDetail";
+import Error from "../Pages/Error/Error";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
         path: "instructorsDetails/:id",
         element: <InstructorsDetail></InstructorsDetail>,
         loader: ({params}) =>fetch(`https://b7a12-summer-camp-server-side-nashif770-nashif770.vercel.app/instructors/${params.id}`),
+      },
+      {
+        path: "*",
+        element: <Error></Error>,
       },
     ],
   },
@@ -101,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: "manageuser",
         element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "*",
+        element: <Error></Error>,
       },
     ],
   },
