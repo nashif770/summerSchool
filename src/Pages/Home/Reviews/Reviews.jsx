@@ -12,7 +12,7 @@ const Reviews = () => {
 
     useEffect(() => {
         axiosSecure
-        .get("http://localhost:5000/reviews")
+        .get("/reviews")
         .then((res) => setReviews(res.data));
     }, [reviews]);
 
