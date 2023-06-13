@@ -13,8 +13,7 @@ const TopClasses = () => {
       ></Headings>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6">
         {tClass.map((cl) => (
-          <div key={cl._id} className="hero w-11/12 bg-base-200 m-3 rounded-lg">
-            <motion.div
+          <motion.div key={cl._id} 
               whileHover={{ scale: 1.2, rotate: 360 }}
               whileTap={{
                 scale: 0.8,
@@ -22,10 +21,11 @@ const TopClasses = () => {
                 borderRadius: "100%",
               }}
             >
+              <div className="hero w-11/12 bg-base-200 m-3 rounded-lg">
               <div className="hero-content flex-col ">
                 <img
                   src={cl.image}
-                  className="max-w-sm rounded-lg shadow-2xl w-1/2"
+                  className="max-w-sm rounded-lg shadow-2xl m-auto p-6 h-96"
                 />
                 <div className="w-full">
                   <h1 className="text-3xl font-bold">{cl.className}</h1>
@@ -46,15 +46,9 @@ const TopClasses = () => {
                     </p>
                   </div>
                 </div>
-                <button
-                  className="btn btn-primary text-white"
-                  disabled={cl.availableSeats == 0 && "disable"}
-                >
-                  Select Class
-                </button>
               </div>
-            </motion.div>
           </div>
+            </motion.div>
         ))}
       </div>
     </div>

@@ -37,7 +37,7 @@ const TopEnrolledClasses = () => {
 
   return (
     <>
-      <Headings heading={"My Classes"} subHeading={""}></Headings>
+      <Headings heading={"Your Classes"} subHeading={""}></Headings>
       <div className="overflow-x-auto">
         <div className="align-middle m-3 mt-0 px-60 py-3 bg-slate-300">
           <p className="text-center text-2xl my-auto">

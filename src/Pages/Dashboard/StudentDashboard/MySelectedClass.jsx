@@ -37,7 +37,6 @@ const MySelectedClass = () => {
       <div className="overflow-x-auto">
         <div className="flex align-middle justify-between m-3 mt-0 px-60 py-3 bg-slate-300">
           <p className="text-2xl my-auto">Total price: ${totalPrice} </p>
-          <button className="btn btn-primary btn-sm">Pay Now</button>
         </div>
         <table className="table">
           {/* head */}

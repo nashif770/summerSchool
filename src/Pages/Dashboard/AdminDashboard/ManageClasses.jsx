@@ -63,7 +63,7 @@ const ManageClasses = () => {
 
   return (
     <>
-      <Headings heading={"My Classes"} subHeading={""}></Headings>
+      <Headings heading={"Manage All Classes"} subHeading={""}></Headings>
       <div className="overflow-x-auto">
         <table className="table p-12">
           {/* head */}

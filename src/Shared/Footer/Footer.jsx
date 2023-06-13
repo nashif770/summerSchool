@@ -10,8 +10,10 @@ const Footer = () => {
     <a className="link link-hover">Press kit</a>
   </div> 
   <div>
-    <div className="grid grid-flow-col gap-4">
-      <a>Summer Slammers Summer School</a>
+    <div className="flex flex-col justify-center items-center">
+      <img src="https://i.ibb.co/Y20XD2H/icon.png" className='h-10 w-10' alt="" />
+      <p className='font-bold text-2xl'>Summer Slammers</p>
+      <p>Summer School</p>
     </div>
   </div> 
   <div>

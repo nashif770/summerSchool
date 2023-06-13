@@ -19,6 +19,7 @@ import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
 import UserDashboard from "../Pages/Dashboard/UserDashboard/UserDashboard";
 import InstructorsDetail from "../Pages/Instructors/InstructorsDetail";
 import Error from "../Pages/Error/Error";
+import TotalEnrolledStudents from "../Pages/Dashboard/InstructorsDashboard/TotalEnrolledStudents";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: "topenrolled",
         element: <TopEnrolledClasses></TopEnrolledClasses>,
+      },
+      {
+        path: "allmystudents",
+        element: <TotalEnrolledStudents></TotalEnrolledStudents>,
       },
       {
         path: "feedback",

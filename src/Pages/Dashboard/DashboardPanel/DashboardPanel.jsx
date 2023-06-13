@@ -85,6 +85,9 @@ const DashboardPanel = () => {
               </NavLink>
             </li>
             <li>
+              <NavLink to={"/dashboard/allmystudents"}>All My Students</NavLink>
+            </li>
+            <li>
               <NavLink to={"/dashboard/feedback"}>FeedBack</NavLink>
             </li>
           </ul>

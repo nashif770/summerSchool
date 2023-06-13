@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useStudentClass from "../../Hooks/useStudentClass";
+import { FaBeer } from 'react-icons/fa';
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const navlist = (
   <>
@@ -21,9 +23,19 @@ const navlist = (
 );
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext); 
+  const [allUsers, setAllUsers] = useState([]);
+  const [axiosSecure] = useAxiosSecure();
 
-  const [data] = useStudentClass();
+  useEffect(()=>{
+    axiosSecure.get('/users')
+    .then(res => setAllUsers(res.data))
+  },[allUsers])
+
+  const currentUser = allUsers.find(thisUser => thisUser.email === user?.email)
+
+  const [myClasses] = useStudentClass();
+
 
   const handleLogOut = () => {
     signOutUser()
@@ -62,7 +74,7 @@ const Navbar = () => {
         </div>
         <div className="flex flex-row align-middle">
           <Link to={"/"} className="btn btn-ghost normal-case text-xl">
-            Summer-Slam
+            Summer Slammers
           </Link>
           <img
             className="h-9 "
@@ -77,12 +89,12 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            {data?.role === "student" ||
-              (data?.role === "masterAdmin" && (
+            {(currentUser?.role === "student" ||
+              currentUser?.role === "masterAdmin") && (
                 <Link to={"/dashboard/selectedclass"} className="btn mx-6">
-                  Carts {data?.length}
+                  Carts {myClasses?.length}
                 </Link>
-              ))}
+              )}
             <img
               src={user?.photoURL}
               alt=""

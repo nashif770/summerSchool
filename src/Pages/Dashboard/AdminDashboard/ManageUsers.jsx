@@ -50,7 +50,7 @@ const ManageUsers = () => {
 
   return (
     <>
-      <Headings heading={"My Classes"} subHeading={""}></Headings>
+      <Headings heading={"Manage All Users"} subHeading={""}></Headings>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -74,7 +74,7 @@ const ManageUsers = () => {
                 <td className="flex m-auto">
                   <button
                     className="btn btn-primary m-auto btn-sm"
-                    disabled={group.role === "admin" && true}
+                    disabled={(group.role === "admin" || group.role === "masterAdmin") && true}
                     onClick={() => {
                       handleMakeAdmin(group._id);
                     }}
@@ -83,7 +83,7 @@ const ManageUsers = () => {
                   </button>
                   <button
                     className="btn btn-primary m-auto btn-sm"
-                    disabled={group.role === "instructor" && true}
+                    disabled={(group.role === "instructor" || group.role === "masterAdmin") && true}
                     onClick={() => {
                       handleMakeInstructor(group);
                     }}

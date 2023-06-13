@@ -18,7 +18,7 @@ const Reviews = () => {
 
   return (
     <>
-    <Headings heading={'Reviews'}></Headings>
+    <Headings heading={'Reviews'} subHeading={"slide to see more"}></Headings>
       <Swiper className="mySwiper m-3 bg-slate-200 rounded-lg">
         {reviews?.map((review) => (
           <SwiperSlide key={review.email} className="border p-5">

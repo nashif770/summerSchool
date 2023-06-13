@@ -87,7 +87,7 @@ const ClassesCard = ({ allClass }) => {
         >
           <img
             src={allClass.image}
-            className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6"
+            className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6 h-96"
           />
           <div className="w-full">
             <h1 className="text-3xl font-bold">{allClass.className}</h1>
