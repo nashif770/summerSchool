@@ -11,44 +11,39 @@ const TopClasses = () => {
         heading={"Our Classes"}
         subHeading={"Find the best one for you"}
       ></Headings>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 m-auto p-6">
         {tClass.map((cl) => (
-          <motion.div key={cl._id} 
-              whileHover={{ scale: 1.2, rotate: 360 }}
-              whileTap={{
-                scale: 0.8,
-                rotate: -90,
-                borderRadius: "100%",
-              }}
-            >
-              <div className="hero w-11/12 bg-base-200 m-3 rounded-lg">
-              <div className="hero-content flex-col ">
+          <motion.div
+            key={cl._id}
+            whileHover={{ scale: 1.1, rotate: 0 }}
+          >
+            <div className="hero bg-white m-3 rounded-lg shadow-lg">
+              <div className="hero-content flex-col h-80">
                 <img
                   src={cl.image}
-                  className="max-w-sm rounded-lg shadow-2xl m-auto p-6 h-96"
+                  className="rounded-lg m-auto h-40"
                 />
                 <div className="w-full">
-                  <h1 className="text-3xl font-bold">{cl.className}</h1>
-                  <p className="py-6 font-bold">
-                    Instructor:{" "}
-                    <span className=" font-normal ">{cl.instructorName}</span>
+                  <h1 className="text-2xl font-bold">{cl.className}</h1>
+                  <p className="py-2 font-bold">
+                    Instructor:
+                    <span className=" font-normal "> {cl.instructorName}</span>
                   </p>
                   <div className="flex justify-between">
                     <p className="font-bold">
                       Available Seats:
                       <span className=" font-normal ">
-                        {" "}
                         {cl.availableSeats}
                       </span>
                     </p>
-                    <p className="font-bold">
+                    <p className="font-bold ms-3">
                       Price: <span className="font-normal"> ${cl.price}</span>
                     </p>
                   </div>
                 </div>
               </div>
-          </div>
-            </motion.div>
+            </div>
+          </motion.div>
         ))}
       </div>
     </div>

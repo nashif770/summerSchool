@@ -26,28 +26,23 @@ const PopularInstructors = () => {
         heading={"Our Instructors"}
         subHeading={"Find the best one for you"}
       ></Headings>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-1 m-auto p-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-5 m-auto p-6">
         {instructors.map((instructor) => (
           <motion.div
             key={instructor._id}
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            whileTap={{
-              scale: 0.8,
-              rotate: -90,
-              borderRadius: "100%",
-            }}
+            whileHover={{ scale: 1.1, rotate: 0 }}
           >
-            <div className="hero w-11/12 bg-base-200 m-3 rounded-lg">
-              <div className="hero-content flex-col ">
+           <div className="hero bg-white m-3 rounded-lg shadow-lg">
+           <div className="hero-content flex-col">
                 <img
                   src={instructor.image}
-                  className="rounded-lg shadow-2xl h-80 mt-3"
+                  className="rounded-lg m-auto h-40"
                 />
                 <div className="w-full">
-                  <h1 className="text-3xl font-bold mt-3">
+                <h1 className="text-2xl font-bold">
                     <span className=" font-normal ">{instructor.name}</span>
                   </h1>
-                  <p className="py-6 font-bold">
+                  <p className="py-2 font-bold">
                     Email:{" "}
                     <span className=" font-normal ">{instructor.email}</span>
                   </p>

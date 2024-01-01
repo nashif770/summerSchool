@@ -5,22 +5,23 @@ import useClasses from "../../Hooks/useClasses";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ClassesCard = ({ allClass }) => {
-
   const [approvedClass, setApprovedClass] = useState();
   const { user } = useContext(AuthContext);
   const [myClasses] = useStudentClass();
   const [axiosSecure] = useAxiosSecure();
-  const [allUser, setAllUser] = useState()
+  const [allUser, setAllUser] = useState();
 
-  useEffect(()=>{
-    axiosSecure.get(`https://b7a12-summer-camp-server-side-nashif770-nashif770.vercel.app/users`)
-    .then(res => {
-      setAllUser(res.data)
-    }
-    )
-  },[])
+  useEffect(() => {
+    axiosSecure
+      .get(
+        `https://b7a12-summer-camp-server-side-nashif770-nashif770.vercel.app/users`
+      )
+      .then((res) => {
+        setAllUser(res.data);
+      });
+  }, []);
 
-  const currentUser = allUser?.find(myUser => myUser?.email == user?.email);
+  const currentUser = allUser?.find((myUser) => myUser?.email == user?.email);
 
   useEffect(() => {
     const { status } = allClass;
@@ -85,22 +86,19 @@ const ClassesCard = ({ allClass }) => {
               : "hero-content flex-col w-full rounded"
           }
         >
-          <img
-            src={allClass.image}
-            className="grid grid-cols-1 md:grid-cols-3 gap-1 m-auto p-6 h-96"
-          />
+          <img src={allClass.image} className="rounded-lg m-auto h-40" />
           <div className="w-full">
-            <h1 className="text-3xl font-bold">{allClass.className}</h1>
-            <p className="py-6 font-bold">
-              Instructor:{" "}
-              <span className=" font-normal ">{allClass.instructorName}</span>
+            <h1 className="text-2xl font-bold">{allClass.className}</h1>
+            <p className="py-2 font-bold">
+              Instructor:
+              <span className=" font-normal "> {allClass.instructorName}</span>
             </p>
             <div className="flex justify-between">
               <p className="font-bold">
-                Available Seats:{" "}
+                Available Seats:
                 <span className=" font-normal ">{allClass.availableSeats}</span>
               </p>
-              <p className="font-bold">
+              <p className="font-bold ms-3">
                 Price: <span className="font-normal"> ${allClass.price}</span>
               </p>
             </div>
@@ -121,7 +119,7 @@ const ClassesCard = ({ allClass }) => {
                 <button
                   onClick={() => handleAddClass(allClass)}
                   className="btn btn-primary text-white"
-                  disabled= { currentUser.role !== "student" && true}
+                  disabled={currentUser.role !== "student" && true}
                 >
                   Add to My Class
                 </button>

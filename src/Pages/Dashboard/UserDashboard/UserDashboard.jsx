@@ -5,19 +5,23 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 const UserDashboard = () => {
   const { user } = useContext(AuthContext);
 
-  
   return (
-    <div>
-      <Headings heading={"User Profile"}></Headings>
-      <div className="ms-3 flex flex-row justify-center">
-        <img className="w-1/3" src={user.photoURL} alt="" />
-        <div className="text-center">
-          <h2 className="text-2xl m-3 font-bold">User Name:</h2>
-          <h2 className="text-2xl m-3">{user.displayName}</h2>
-          <h2 className="text-2xl m-3 font-bold">User Email:</h2>
-          <h2 className="text-2xl m-3">{user.email}</h2>
-        </div>
-      </div>
+    <div className="m-3 flex flex-row gap-10">
+      <img className="w-1/3" src={user.photoURL} alt="" />
+      <div className="flex flex-row gap-3">
+                <div>
+                  <p>
+                    <span className="font-bold">Name</span>
+                  </p>
+                  <p>
+                    <span className="font-bold">Email</span>
+                  </p>
+                </div>
+                <div>
+                  <p>: {user.displayName}</p>
+                  <p>: {user.email}</p>
+                </div>
+              </div>
     </div>
   );
 };

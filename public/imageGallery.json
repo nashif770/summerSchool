@@ -1,0 +1,108 @@
+[
+    {
+      "title": "Martial Arts Training",
+      "description": "Focused training session in action.",
+      "imagePath": "images/training_1.jpg"
+    },
+    {
+      "title": "Summer Fun",
+      "description": "Participants enjoying outdoor activities.",
+      "imagePath": "images/summer_fun_1.jpg"
+    },
+    {
+      "title": "Instructors Showcase",
+      "description": "Our skilled martial arts instructors.",
+      "imagePath": "images/instructors_1.jpg"
+    },
+    {
+      "title": "Team Spirit",
+      "description": "Participants demonstrating team spirit.",
+      "imagePath": "images/team_spirit_1.jpg"
+    },
+    {
+      "title": "Training Facilities",
+      "description": "State-of-the-art facilities for rigorous training.",
+      "imagePath": "images/facilities_1.jpg"
+    },
+    {
+      "title": "Outdoor Training",
+      "description": "Practicing martial arts techniques under the sun.",
+      "imagePath": "images/outdoor_training_1.jpg"
+    },
+    {
+      "title": "Award Ceremony",
+      "description": "Celebrating achievements at the end of the summer program.",
+      "imagePath": "images/award_ceremony_1.jpg"
+    },
+    {
+      "title": "Another Image",
+      "description": "Description for another image.",
+      "imagePath": "images/another_image_1.jpg"
+    },
+    {
+      "title": "Yet Another Image",
+      "description": "Description for yet another image.",
+      "imagePath": "images/yet_another_image_1.jpg"
+    },
+    {
+      "title": "Sunset View",
+      "description": "Beautiful sunset captured in the evening.",
+      "imagePath": "images/sunset_view_1.jpg"
+    },
+    {
+      "title": "City Lights",
+      "description": "Night view of city lights from a high vantage point.",
+      "imagePath": "images/city_lights_1.jpg"
+    },
+    {
+      "title": "Nature Beauty",
+      "description": "Scenic view of nature's beauty.",
+      "imagePath": "images/nature_beauty_1.jpg"
+    },
+    {
+      "title": "Abstract Art",
+      "description": "Creative and abstract art piece.",
+      "imagePath": "images/abstract_art_1.jpg"
+    },
+    {
+      "title": "Adventure Time",
+      "description": "Exciting adventure in the great outdoors.",
+      "imagePath": "images/adventure_time_1.jpg"
+    },
+    {
+      "title": "Family Gathering",
+      "description": "Joyful moments with family and friends.",
+      "imagePath": "images/family_gathering_1.jpg"
+    },
+    {
+      "title": "Winter Wonderland",
+      "description": "Snow-covered landscapes in winter.",
+      "imagePath": "images/winter_wonderland_1.jpg"
+    },
+    {
+      "title": "Celebration",
+      "description": "Celebrating special occasions with smiles.",
+      "imagePath": "images/celebration_1.jpg"
+    },
+    {
+      "title": "Tech Innovation",
+      "description": "Exploring the latest in technological innovation.",
+      "imagePath": "images/tech_innovation_1.jpg"
+    },
+    {
+      "title": "Artistic Expression",
+      "description": "Expressing creativity through artistic forms.",
+      "imagePath": "images/artistic_expression_1.jpg"
+    },
+    {
+      "title": "Serenity",
+      "description": "Finding peace and serenity in quiet moments.",
+      "imagePath": "images/serenity_1.jpg"
+    },
+    {
+      "title": "Golden Hour",
+      "description": "Capturing the magic of the golden hour.",
+      "imagePath": "images/golden_hour_1.jpg"
+    }
+  ]
+  
