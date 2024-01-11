@@ -21,33 +21,44 @@ const OurStats = () => {
 
   return (
     <>
-      <Headings heading={"Status"}></Headings>
-      <div className="flex flex-col justify-center">
-        <div className="stats shadow m-3">
-          <div className="stat">
-            <div className="stat-figure text-primary">{/* TODO: icon */}</div>
-            <div className="stat-title text-center">Total Classes</div>
-            <div className="stat-value text-center text-primary">
-              {allClass.length}
-            </div>
-          </div>
+      <Headings heading={"Status"} />
 
-          <div className="stat">
-            <div className="stat-figure text-secondary">{/* TODO: icon */}</div>
-            <div className="stat-title text-center">All Instructor</div>
-            <div className="stat-value text-center text-secondary">
-              {instructors.length}
-            </div>
+      <div className="flex flex-wrap justify-center m-3">
+        <div className="stat-card bg-white shadow-lg m-3 p-6 rounded-md">
+          <div className="stat-icon text-primary">
+            {/* TODO: Add an icon or SVG for Total Classes */}
+            <span className="text-4xl">📚</span>
           </div>
-
-          <div className="stat">
-            <div className="stat-figure text-secondary">
-              <div className="w-16 rounded-full">{/* TODO: icon */}</div>
-            </div>
-            <div className="stat-title text-center">Our Students </div>
-            <div className="stat-value text-center">{allStudents.length}</div>
+          <div className="stat-title text-center text-lg">Total Classes</div>
+          <div className="stat-value text-center text-primary text-2xl font-bold">
+            {allClass.length}
           </div>
         </div>
+
+        <div className="stat-card bg-white shadow-lg m-3 p-6 rounded-md">
+          <div className="stat-icon text-secondary">
+            {/* TODO: Add an icon or SVG for All Instructors */}
+            <span className="text-4xl">👩‍🏫</span>
+          </div>
+          <div className="stat-title text-center text-lg">All Instructors</div>
+          <div className="stat-value text-center text-secondary text-2xl font-bold">
+            {instructors.length}
+          </div>
+        </div>
+
+        <div className="stat-card bg-white shadow-lg m-3 p-6 rounded-md">
+          <div className="stat-icon text-secondary">
+            {/* TODO: Add an icon or SVG for Our Students */}
+            <span className="text-4xl">👨‍🎓</span>
+          </div>
+          <div className="stat-title text-center text-lg">Our Students</div>
+          <div className="stat-value text-center text-2xl font-bold text-green-600">
+            {allStudents.length}
+          </div>
+        </div>
+
+        {/* Add more stat-cards with relevant information */}
+        {/* <div className="stat-card ..."> ... </div> */}
       </div>
     </>
   );

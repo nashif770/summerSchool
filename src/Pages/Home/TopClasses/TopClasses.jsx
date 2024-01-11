@@ -10,36 +10,43 @@ const TopClasses = () => {
       <Headings
         heading={"Our Classes"}
         subHeading={"Find the best one for you"}
-      ></Headings>
+      />
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 m-auto p-6">
         {tClass.map((cl) => (
-          <motion.div
-            key={cl._id}
-            whileHover={{ scale: 1.1, rotate: 0 }}
-          >
-            <div className="hero bg-white m-3 rounded-lg shadow-lg">
-              <div className="hero-content flex-col h-80">
+          <motion.div key={cl._id} whileHover={{ scale: 1.05 }}>
+            <div className="bg-white m-3 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+              <div className="h-52 overflow-hidden">
                 <img
                   src={cl.image}
-                  className="rounded-lg m-auto h-40"
+                  alt={cl.className}
+                  className="object-cover w-full h-[52]"
                 />
-                <div className="w-full">
-                  <h1 className="text-2xl font-bold">{cl.className}</h1>
-                  <p className="py-2 font-bold">
-                    Instructor:
-                    <span className=" font-normal "> {cl.instructorName}</span>
+              </div>
+
+              <div className="p-4">
+                <h1 className="text-xl font-bold text-gray-800 mb-2">
+                  {cl.className}
+                </h1>
+                <p className="text-sm font-semibold text-gray-600 mb-2">
+                  Instructor:{" "}
+                  <span className="font-normal text-gray-500">
+                    {cl.instructorName}
+                  </span>
+                </p>
+                <div className="flex justify-between text-sm">
+                  <p className="font-semibold text-gray-600">
+                    Available Seats:{" "}
+                    <span className="font-normal text-gray-500">
+                      {cl.availableSeats}
+                    </span>
                   </p>
-                  <div className="flex justify-between">
-                    <p className="font-bold">
-                      Available Seats:
-                      <span className=" font-normal ">
-                        {cl.availableSeats}
-                      </span>
-                    </p>
-                    <p className="font-bold ms-3">
-                      Price: <span className="font-normal"> ${cl.price}</span>
-                    </p>
-                  </div>
+                  <p className="font-semibold text-gray-600">
+                    Price:{" "}
+                    <span className="font-normal text-gray-500">
+                      ${cl.price}
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>

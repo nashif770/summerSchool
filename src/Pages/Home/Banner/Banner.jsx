@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col m-3 p-3">
+    <div>
       <Headings
         heading={"Elevate Your Skills, Embrace the Summer Spirit"}
         subHeading={"Summer Slammers Summer School"}
-      ></Headings>
-      <div className="carousel w-full h-screen m-auto">
+      />
+      <div className="carousel relative w-full h-96 m-auto overflow-hidden rounded-md shadow-lg">
         <div id="slide1" className="carousel-item relative w-full">
           <img
             src={"https://i.ibb.co/F07HXmL/Banner1.jpg"}
@@ -67,16 +67,19 @@ const Banner = () => {
           </div>
         </div>
       </div>
-      <div className="m-3 w-full text-center">
-        <h2 className="text-2xl">
+      <div className="m-3 text-center text-white">
+        <h2 className="text-3xl font-semibold">
           Discover & Grow: Martial Arts Summer School!
         </h2>
-        <p className="mt-3 w-1/2 m-auto text-center">
-          Join for rigorous training, fun activities, and life lessons. <br />
-          Master techniques under the summer sun. <br />
+        <p className="mt-3">
+          Join for rigorous training, fun activities, and life lessons.
+          <br />
+          Master techniques under the summer sun.
         </p>
-        <Link to={"/classes"}>
-          <h2 className="btn btn-primary text-3xl font-bold mt-3">Enroll Now!</h2>
+        <Link to="/classes">
+          <button className="btn btn-primary text-2xl font-semibold mt-3 px-6 rounded-full bg-[#3498db] hover:bg-[#2980b9] transition duration-300">
+            Enroll Now!
+          </button>
         </Link>
       </div>
     </div>

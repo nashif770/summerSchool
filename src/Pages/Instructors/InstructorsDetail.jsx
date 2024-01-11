@@ -7,39 +7,36 @@ const InstructorsDetail = () => {
   const instructorId = id[0];
 
   return (
-    <div className="flex flex-row w-3/4 h-screen p-12">
+    <div className="flex flex-row w-3/4 my-2 mx-auto h-screen p-12 bg-[#f9f9f9]">
       <img
-        className="m-3 rounded-lg shadow-2xl mt-3"
+        className="m-3 rounded-lg shadow-2xl mt-3 h-60 object-cover"
         src={instructorId.image}
         alt=""
       />
       <div className="m-3">
         <div className="flex flex-row gap-3">
           <div>
-            <p>
-              <span className="font-bold">Name</span>
-            </p>
-            <p>
-              <span className="font-bold">Email</span>
-            </p>
-            <p>
-              <span className="font-bold">Classes</span>
-            </p>
+            <p className="font-bold text-lg text-[#4a4a4a]">Name:</p>
+            <p className="font-bold text-lg text-[#4a4a4a]">Email:</p>
+            <p className="font-bold text-lg text-[#4a4a4a]">Classes:</p>
           </div>
           <div>
-            <p>: {instructorId.name}</p>
-            <p>: {instructorId.email}</p>
-            <p>: 0{instructorId.classesTaken}</p>
+            <p className="text-lg text-[#4a4a4a]">{instructorId.name}</p>
+            <p className="text-lg text-[#4a4a4a]">{instructorId.email}</p>
+            <p className="text-lg text-[#4a4a4a]">
+              0{instructorId.classesTaken}
+            </p>
           </div>
         </div>
-        <div className="mt-3">
-          <p className="font-bold text-1xl">My Classes:</p>
-          <p className="mt-1 ms-32">{instructorId.classes[0]}</p>
-          <p className="mt-1 ms-32">{instructorId.classes[1]}</p>
-          <p className="mt-1 ms-32">{instructorId.classes[2]}</p>
-          <p className="mt-1 ms-32">{instructorId.classes[3]}</p>
-          <p className="mt-1 ms-32">{instructorId.classes[4]}</p>
-          <p className="mt-1 ms-32">{instructorId.classes[5]}</p>
+        <div className="mt-4">
+          <p className="font-bold text-lg text-[#4a4a4a] mb-2">My Classes:</p>
+          <ul className="list-disc list-inside text-[#4a4a4a]">
+            {instructorId.classes.map((className, index) => (
+              <li key={index} className="text-lg">
+                {className}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

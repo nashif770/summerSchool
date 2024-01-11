@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <QueryClientProvider client={queryClient}>
-        <div>
+        <div className="min-h-screen">
           <RouterProvider router={router}></RouterProvider>
         </div>
       </QueryClientProvider>

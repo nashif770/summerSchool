@@ -7,6 +7,8 @@ import Reviews from './Reviews/Reviews';
 import VideoIntro from './VideoIntro/VideoIntro';
 import Gallery from './Gallery/Gallery';
 import AboutUs from './AboutUs/AboutUs';
+import FAQ from './FAQ/FAQ';
+import ContactUs from './ContactUs/ContactUs';
 
 const Home = () => {
     return (
@@ -18,7 +20,9 @@ const Home = () => {
             <OurStats></OurStats>
             <Gallery></Gallery>
             <Reviews></Reviews>
+            <FAQ></FAQ>
             <AboutUs></AboutUs>
+            <ContactUs></ContactUs>
         </div>
     );
 };

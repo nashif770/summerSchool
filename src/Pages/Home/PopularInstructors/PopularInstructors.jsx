@@ -25,40 +25,41 @@ const PopularInstructors = () => {
       <Headings
         heading={"Our Instructors"}
         subHeading={"Find the best one for you"}
-      ></Headings>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-5 m-auto p-6">
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 m-auto p-6">
         {instructors.map((instructor) => (
-          <motion.div
-            key={instructor._id}
-            whileHover={{ scale: 1.1, rotate: 0 }}
-          >
-           <div className="hero bg-white m-3 rounded-lg shadow-lg">
-           <div className="hero-content flex-col">
-                <img
-                  src={instructor.image}
-                  className="rounded-lg m-auto h-40"
-                />
-                <div className="w-full">
-                <h1 className="text-2xl font-bold">
-                    <span className=" font-normal ">{instructor.name}</span>
-                  </h1>
-                  <p className="py-2 font-bold">
-                    Email:{" "}
-                    <span className=" font-normal ">{instructor.email}</span>
-                  </p>
-                  <p className="font-bold">
-                    Classes Taken:{" "}
-                    <span className=" font-normal ">
-                      0{instructor.classesTaken}
-                    </span>
-                  </p>
-                </div>
-                <Link to={`/instructorsDetails/${instructor._id}`}>
-                  <button className="btn btn-primary text-white">
-                    See Classes
-                  </button>
-                </Link>
+          <motion.div key={instructor._id} whileHover={{ scale: 1.05 }}>
+            <div className="bg-white m-3 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
+              <img
+                src={instructor.image}
+                alt={instructor.name}
+                className="h-40 w-full object-cover object-top"
+              />
+
+              <div className="p-4">
+                <h1 className="text-xl font-bold text-gray-800 mb-2">
+                  {instructor.name}
+                </h1>
+                <p className="text-sm font-bold text-gray-600 mb-2">
+                  Email:{" "}
+                  <span className="font-normal text-gray-500">
+                    {instructor.email}
+                  </span>
+                </p>
+                <p className="text-sm font-bold text-gray-600">
+                  Classes Taken:{" "}
+                  <span className="font-normal text-gray-500">
+                    0{instructor.classesTaken}
+                  </span>
+                </p>
               </div>
+
+              <Link to={`/instructorsDetails/${instructor._id}`}>
+                <button className="btn btn-primary text-white w-full py-2">
+                  See Classes
+                </button>
+              </Link>
             </div>
           </motion.div>
         ))}
